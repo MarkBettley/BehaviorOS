@@ -1,0 +1,292 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 100-Architecture
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define la arquitectura empresarial y técnica del
+# BehavioralOS. Establece la estructura de alto nivel del sistema,
+# los dominios, las capas, los motores, los contratos de integración
+# y los principios de diseño que guiarán toda la implementación.
+#
+# CONTENIDO:
+#   1. system-architecture.md   → BEA: Capas, dominios y principios
+#   2. engines-overview.md      → BREO: Catálogo de motores y frameworks
+#   3. behavioral-twin.md       → Behavioral Twin: Modelo dinámico del paciente
+#   4. data-model.md            → Modelo de datos y grafos (BKGE, BWM)
+#
+# IMPORTANCIA:
+# Esta carpeta es el puente entre la filosofía (000-Core) y la
+# implementación técnica. Sin una arquitectura clara, los módulos
+# crecerán de forma desordenada y será difícil mantener la coherencia.
+# ============================================================
+
+module:
+  id: 100-Architecture
+  name: "Arquitectura del Sistema"
+  version: 2.0.0
+  status: Stable
+  implementation_level: 3
+  implementation_status: "Frozen — esperar a Nivel 2"
+  owner: "Arquitectura de Software & Ciencia de Datos"
+  last_updated: 2026-07-14
+  description: >
+    Define la estructura del BehavioralOS a nivel empresarial y técnico.
+    Incluye la Behavioral Enterprise Architecture (BEA), el catálogo de
+    motores y frameworks (BREO), el Behavioral Twin, el modelo de datos,
+    el Behavioral Intelligence Kernel (BIK), el Behavioral Explainability
+    Engine (BXE) y la arquitectura de Event Sourcing.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La arquitectura debe alinearse con la filosofía, principios y ontología."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BEA-001
+    file: system-architecture.md
+    title: "Arquitectura Empresarial (BEA)"
+    description: >
+      Define las capas del sistema (Experience, Clinical, Intelligence, Business,
+      Operations, Governance, Data, Infrastructure, Integration, Security, Research)
+      y sus responsabilidades. Establece los principios de diseño (DDD, eventos,
+      desacoplamiento, multi-tenant) y las reglas de comunicación entre dominios.
+    priority: P0
+    estimated_read_time: 20 min
+    exports:
+      - "Mapa de capas y dominios"
+      - "Principios arquitectónicos"
+      - "Contratos de integración"
+
+  - id: BREO-001
+    file: engines-overview.md
+    title: "Catálogo de Motores y Frameworks (BREO)"
+    description: >
+      Inventario completo de todos los motores, frameworks, SDKs y librerías
+      que componen el BehavioralOS. Incluye motores de IA (Gemma, MediaPipe),
+      psicológicos (ACT, FAP, DBT, PBT, RFT, EEMM), de juego (Godot, jsPsych),
+      analíticos (NetworkX, statsmodels, pyEDM, fuzzylogic), de backend
+      (FastAPI, Supabase, Redis), de frontend (React, Tailwind) y de negocio
+      (Stripe, Mercado Pago, Facturapi). Cada motor tiene ficha con versión,
+      propósito, dependencias, interfaces y políticas de uso.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Catálogo de motores"
+      - "Fichas de integración"
+      - "Matriz de compatibilidad"
+
+  - id: BT-001
+    file: behavioral-twin.md
+    title: "Behavioral Twin"
+    description: >
+      Modelo computacional dinámico que representa el estado funcional de un
+      paciente en tiempo real. Integra historia de aprendizaje, repertorios,
+      redes RFT, procesos psicológicos, contingencias activas, hipótesis,
+      valores y niveles de confianza. Se actualiza con cada interacción
+      (AAO, ejercicios, sesiones) y sirve como fuente de verdad para todos
+      los motores clínicos.
+    priority: P0
+    estimated_read_time: 18 min
+    exports:
+      - "Estructura del Behavioral Twin"
+      - "Mecanismos de actualización"
+      - "APIs de consulta"
+
+  - id: DM-001
+    file: data-model.md
+    title: "Modelo de Datos y Grafos"
+    description: >
+      Define la estructura de datos del BehavioralOS, incluyendo el modelo
+      relacional (PostgreSQL), el modelo de grafos (BKGE para conocimiento,
+      BWM para el mundo conductual), el modelo vectorial (pgvector para RAG),
+      el dominio de procesos (process_nodes, process_edges, process_snapshots,
+      process_events, process_domains, process_instruments) y el dominio de
+      streaming (event_stream, derived_views) para Event Sourcing.
+      Especifica las entidades principales, las relaciones, los índices,
+      las políticas de versionado y las reglas de consistencia.
+    priority: P0
+    estimated_read_time: 22 min
+    exports:
+      - "Esquema de base de datos"
+      - "Modelo de grafos BKGE/BWM"
+      - "Modelo de procesos BPG"
+      - "Modelo de Event Sourcing"
+      - "Políticas de versionado y consistencia"
+
+  - id: BIK-001
+    file: bik-architecture.md
+    title: "Behavioral Intelligence Kernel (BIK)"
+    description: >
+      Núcleo central de orquestación e inteligencia del ecosistema Behavioral.
+      Coordina, sincroniza, contextualiza y gobierna el funcionamiento de todos
+      los motores clínicos, analíticos, adaptativos y operativos. Consta de 20
+      submotores: Intelligence Orchestrator, Cognitive Context Engine, Behavioral
+      Memory Manager, Reasoning Router, Knowledge Fusion Engine, Global State
+      Manager, Coordination Bus, Goal Management Engine, Cognitive Workflow Engine,
+      Multi-Agent Coordination, Explainability Coordinator, Conflict Resolution,
+      Policy Enforcement, Trust & Confidence Manager, Resource Allocation,
+      Learning Governance, Intelligence Registry, Kernel Monitoring, Behavioral
+      AI Runtime y Kernel API.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Diagrama de interacción entre motores del núcleo"
+      - "Flujo de datos end-to-end: paciente → motores → dashboards"
+      - "Protocolos de comunicación entre motores"
+      - "Contratos de interfaz del Kernel API"
+      - "Catálogo de submotores del BIK"
+
+  - id: BXE-001
+    file: bxe-spec.md
+    title: "Behavioral Explainability Engine (BXE)"
+    description: >
+      Motor de explicabilidad y trazabilidad clínica. Documenta, reconstruye y
+      comunica el razonamiento utilizado por la IA en cada evaluación, formulación,
+      recomendación, ejercicio, adaptación o alerta. Consta de 14 submotores:
+      Decision Trace, Evidence Attribution, Rule Explanation, Process Explanation,
+      Clinical Narrative Generator, Alternative Reasoning, Confidence Explanation,
+      Knowledge Trace, Graph Explanation, Timeline Reconstruction, AI Transparency
+      Layer, Explainability API, Explainability Report Generator y Audit Trace Manager.
+    priority: P0
+    estimated_read_time: 20 min
+    exports:
+      - "Arquitectura de 14 submotores de explicabilidad"
+      - "Explainability Graph (grafo de trazabilidad)"
+      - "Explainability Dashboard para el psicólogo"
+      - "Explainability Timeline (por sesión)"
+      - "Explainability Score (métrica compuesta)"
+      - "Explainability API (contrato público)"
+
+  - id: ESA-001
+    file: event-sourcing-architecture.md
+    title: "Arquitectura de Event Sourcing y Datos Derivados"
+    description: >
+      Define la arquitectura de datos del BehavioralOS basada en Event Sourcing
+      y el patrón de Datos Derivados. Establece el Event Stream como System of
+      Record, motores especializados que observan el flujo de eventos, estrategia
+      de migración Strangler Fig, Database Views como contrato público y
+      filosofía de Deep Modules.
+    priority: P0
+    estimated_read_time: 18 min
+    exports:
+      - "Event Stream como System of Record"
+      - "Patrón de Datos Derivados"
+      - "Estrategia de migración Strangler Fig"
+      - "Database Views como contrato público"
+      - "Stack tecnológico: Redis Streams, FastAPI, PostgreSQL"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Arquitectura de Capas"
+      description: "Organización de los dominios y sus responsabilidades"
+      used_by: [Todos los módulos]
+  - concept:
+      name: "Catálogo de Motores"
+      description: "Fichas técnicas de todos los motores y frameworks (~35+)"
+      used_by: [BRIL, BQAS, CI/CD]
+  - concept:
+      name: "Behavioral Twin"
+      description: "Modelo dinámico del paciente"
+      used_by: [AAO, BERL, TCCN, AHEE, MPO, MCE, CEC, ASC]
+  - concept:
+      name: "Modelo de Datos"
+      description: "Esquemas relacionales, de grafos, vectoriales, de procesos y de streaming"
+      used_by: [Backend, BKGE, BWM, BSC, BIP, BPE, BPO, BPG, BIK, BXE]
+  - concept:
+      name: "Behavioral Intelligence Kernel"
+      description: "Núcleo central de orquestación e inteligencia (20 submotores)"
+      used_by: [Todos los motores del ecosistema]
+  - concept:
+      name: "Behavioral Explainability Engine"
+      description: "Capa de transparencia y trazabilidad clínica (14 submotores)"
+      used_by: [Todos los motores que generan decisiones clínicas]
+  - concept:
+      name: "Event Sourcing Architecture"
+      description: "Arquitectura de datos basada en Event Stream y Datos Derivados"
+      used_by: [BIK, BPE, BPO, BPG, BXE, BARS, BRIL]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Toda funcionalidad debe pertenecer a una capa definida en BEA."
+    check: "Cada nuevo módulo debe declarar su capa en el archivo de arquitectura."
+  - rule: "Cada motor declarado en BREO debe tener una ficha técnica completa."
+    check: "El validador verifica que todos los campos requeridos estén presentes."
+  - rule: "El Behavioral Twin debe actualizarse con cada interacción del paciente."
+    check: "Las pruebas de integración verifican que el Twin se actualice correctamente."
+  - rule: "El modelo de datos debe estar sincronizado con la ontología."
+    check: "Cada entidad en la base de datos debe mapear a un nodo de la ontología."
+  - rule: "Todo motor del núcleo (BPE, BPO, BPG, BXE, BIK) debe tener especificación en 100-Architecture."
+    check: "El validador verifica que bik-architecture.md, bxe-spec.md y event-sourcing-architecture.md existan."
+  - rule: "El Event Stream debe ser la única fuente de verdad para datos derivados."
+    check: "Ningún motor derive datos sin consumir del event_stream."
+  - rule: "El BPG debe mantener snapshots al final de cada sesión terapéutica."
+    check: "Las pruebas de integración verifican la creación de process_snapshots."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Arquitectura y Diseño"
+  required_for:
+    - "Comprensión de la estructura del sistema"
+    - "Diseño de nuevos módulos"
+    - "Integración de motores"
+    - "Optimización de rendimiento"
+    - "Comprensión del orden arquitectónico central (BPE > BPO > BPG > BERL > TCCN > AHEE > BIP > Reportes)"
+    - "Uso del BIK como orquestador y del BXE como capa de explicabilidad"
+    - "Implementación de Event Sourcing y Datos Derivados"
+    - "Aplicación de principios Torticode (DRY/KISS/YAGNI, Big O, POO/DDD, Encoding/Hashing/Encryption)"
+  tokens_estimate: 5000
+  embedding_tags:
+    - "arquitectura"
+    - "capas"
+    - "dominios"
+    - "motores"
+    - "frameworks"
+    - "behavioral-twin"
+    - "modelo-datos"
+    - "grafos"
+    - "eventos"
+    - "multi-tenant"
+    - "bpe"
+    - "bpo"
+    - "bpg"
+    - "bik"
+    - "bxe"
+    - "event-sourcing"
+    - "process-nodes"
+    - "process-edges"
+    - "explainability"
+    - "orchestration"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura Jefe"
+    changes:
+      - "Creación inicial del módulo de Arquitectura."
+      - "Definición de los cuatro documentos principales: BEA, BREO, Behavioral Twin y Modelo de Datos."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."
+  - version: 2.0.0
+    date: 2026-07-14
+    author: "Arquitectura Jefe"
+    changes:
+      - "Agregado de bik-architecture.md (BIK), bxe-spec.md (BXE) y event-sourcing-architecture.md como children."
+      - "Agregadas exportaciones: Behavioral Intelligence Kernel, Explainability Engine, Event Sourcing Architecture."
+      - "Agregadas 3 reglas de validación nuevas (motor core en 100-Architecture, Event Stream como SOR, BPG snapshots)."
+      - "Actualizado ai_context con tags y required_for para BPE, BPO, BPG, BIK, BXE, Event Sourcing."

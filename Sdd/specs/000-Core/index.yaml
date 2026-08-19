@@ -1,0 +1,270 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 000-Core
+# Version: 2.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo contiene la base filosófica, ontológica y semántica
+# de todo el ecosistema BehavioralOS.
+#
+# Define:
+#   1. La misión, visión y principios éticos innegociables.
+#   2. La ontología formal del comportamiento (entidades, procesos y relaciones).
+#   3. El lenguaje común (vocabulario permitido y prohibido).
+#   4. Las reglas de oro que gobiernan todas las interacciones.
+#
+# IMPORTANCIA:
+# Ningún otro módulo puede entenderse sin este núcleo.
+# Es el "ADN" del proyecto. Todo componente, ejercicio, IA o flujo
+# comercial debe validarse contra los principios aquí definidos.
+# ============================================================
+
+module:
+  id: 000-Core
+  name: "Núcleo Filosófico y Ontológico"
+  version: 2.0.0
+  status: Stable          # Stable | Experimental | Deprecated
+  owner: "Arquitectura & Psicología Clínica"
+  last_updated: 2026-08-07
+  description: >
+    Fundamento conceptual del BehavioralOS.
+    Establece el "por qué" y el "qué" antes de que exista el "cómo".
+    Es la constitución del ecosistema.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS (Ninguna, es la raíz)
+# ------------------------------------------------------------
+depends_on: []
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: PHI-001
+    file: philosophy.md
+    title: "Filosofía del Producto"
+    description: >
+      Misión, visión, valores fundamentales y la fantasía central
+      del ecosistema (el paciente como explorador, el terapeuta como guía).
+    priority: P0  # Crítico
+    estimated_read_time: 12 min
+
+  - id: PRN-001
+    file: principles.md
+    title: "Principios y Reglas de Oro"
+    description: >
+      Los 12 principios de diseño conductual, las reglas éticas
+      inquebrantables (ej. "Jamás castigar", "La IA nunca sustituye al terapeuta")
+      y los principios de Nintendo/Apple aplicados a la UI/UX.
+    priority: P0
+    estimated_read_time: 15 min
+
+  - id: VOC-001
+    file: vocabulary.md
+    title: "Lenguaje del Ecosistema"
+    description: >
+      Diccionario controlado. Palabras prohibidas (ej. "paciente deprimido",
+      "ejercicio", "fracaso") y palabras permitidas (ej. "explorador",
+      "misión", "experimento"). Esto moldea la cognición del usuario.
+    priority: P1
+    estimated_read_time: 8 min
+
+  - id: ONT-001
+    file: ontology.md
+    title: "Ontología Formal del Comportamiento"
+    description: >
+      La unidad de análisis del sistema. Define Organismo, Contexto,
+      Evento, Conducta, Consecuencia, Operaciones Motivacionales,
+      Marcos Relacionales (RFT) y Procesos Psicológicos (PBT).
+      Es el lenguaje común para AAO, BERL, BSC y el Behavioral Twin.
+    priority: P0
+    estimated_read_time: 25 min
+
+  - id: BPE-001
+    file: behavioral-process-engine.md
+    title: "Behavioral Process Engine"
+    description: >
+      Motor central de procesos psicológicos. Centraliza TODOS los
+      procesos psicológicos conocidos (18 dominios) y los conecta con
+      ejercicios, juegos, evaluaciones, IA, dashboards e intervenciones.
+    priority: P0
+    estimated_read_time: 30 min
+
+  - id: BPO-001
+    file: bpo-ontology.md
+    title: "Behavioral Process Ontology"
+    description: >
+      Ontología formal de procesos psicológicos. Cada proceso tiene UUID,
+      definiciones múltiples, relaciones, instrumentos, juegos, evidencia
+      científica y versionado semántico.
+    priority: P0
+    estimated_read_time: 25 min
+
+  - id: BPG-001
+    file: bpg-spec.md
+    title: "Behavioral Process Graph"
+    description: >
+      Grafo dirigido dinámico de procesos psicológicos. Representa el
+      funcionamiento psicológico de individuos, parejas, familias o
+      sistemas usando NetworkX y PostgreSQL.
+    priority: P0
+    estimated_read_time: 20 min
+
+  - id: TCD-001
+    file: torticode-principles.md
+    title: "Principios de Código e Implementación (Torticode)"
+    description: >
+      Los 5 principios de código que gobiernan toda implementación del BehavioralOS:
+      DRY/KISS/YAGNI/Bajo Acoplamiento, Encoding vs Hashing vs Encriptación,
+      Big O y Optimización, POO+DDD (incluye expansión de los 4 pilares POO con
+      analogías de Torticode), y Testing First. Define reglas de calidad,
+      transformación criptográfica correcta y patrones de diseño.
+    priority: P0
+    estimated_read_time: 10 min
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué conceptos ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Core Mission"
+      description: "Ayudar a desarrollar habilidades psicológicas duraderas"
+      used_by: [All modules]
+  - concept:
+      name: "Behavioral Ontology"
+      description: "Grafo de entidades y relaciones del comportamiento"
+      used_by: [AAO, BERL, BSC, BKGE, BWM, RFT Engine]
+  - concept:
+      name: "Ethical Constraints"
+      description: "Reglas inquebrantables (no manipulación, no castigo, etc.)"
+      used_by: [AI Guardrails, BSOS, BCGS, TCCN]
+  - concept:
+      name: "Controlled Vocabulary"
+      description: "Lenguaje permitido y prohibido para toda la interfaz"
+      used_by: [BDS, TCCN, Patient App, Therapist App]
+  - concept:
+      name: "Behavioral Process Engine"
+      description: "Motor central que mapea los 18 dominios de procesos psicológicos a intervenciones, evaluaciones y juegos"
+      used_by: [BPO, BPG, BIK, BERL, AAO, BCMS, BCIE]
+  - concept:
+      name: "Behavioral Process Ontology"
+      description: "Ontología formal con UUID, definiciones múltiples, evidencia científica y versionado semántico por proceso"
+      used_by: [BPG, BXE, BIK, BKGE, BSC]
+  - concept:
+      name: "Behavioral Process Graph"
+      description: "Grafo dirigido dinámico que representa el funcionamiento psicológico de individuos y sistemas"
+      used_by: [BXE, BIK, BCIE, BSI, Behavioral Twin]
+  - concept:
+      name: "Behavioral Explainability Engine"
+      description: "Motor de explicabilidad y transparencia: toda decisión de IA debe ser trazable, con reglas, evidencia y alternativas descartadas"
+      used_by: [TCCN, Therapist App, BSOS, BIK]
+  - concept:
+      name: "Behavioral Intelligence Kernel"
+      description: "Núcleo consolidado que integra todos los motores (BPO, BPG, BERL, BXE, etc.) como un único sistema operativo conductual"
+      used_by: [All AI modules, 100-Architecture]
+  - concept:
+      name: "Behavioral Clinical Management System"
+      description: "Gestión clínica extendida que coordina pacientes, terapeutas, expedientes, sesiones, planes de tratamiento y supervisión"
+      used_by: [BCIE, BCOE, BSI, BPOS]
+  - concept:
+      name: "Behavioral Caseload Intelligence"
+      description: "Inteligencia de carga clínica: priorización, riesgo de abandono, optimizador de carga de terapeuta y dashboard de casos"
+      used_by: [BCOE, BSI, BIP]
+  - concept:
+      name: "Behavioral Clinic Operations Engine"
+      description: "Operaciones del consultorio: ocupación, utilización, indicadores financieros no clínicos, productividad por servicio e ingresos"
+      used_by: [BPOS, BCE, BRE]
+  - concept:
+      name: "Behavioral Scheduling Intelligence"
+      description: "Inteligencia de agendamiento: optimiza continuidad terapéutica, sugiere sesiones y nunca agenda automáticamente"
+      used_by: [BPOS, BCIE, BCMS]
+  - concept:
+      name: "Torticode Principles"
+      description:       "5 principios de código vinculantes para toda implementación"
+      used_by: [1300-Libraries, 1100-Testing, 100-Architecture, 900-Security]
+  - concept:
+      name: "4 Pilares POO (Expanded)"
+      description: "Abstracción, Encapsulación, Herencia y Polimorfismo como principios vinculantes de diseño. Incluye analogías del video Torticode (cajero automático, botón Play, volante del auto), tablas comparativas por lenguaje y ejemplos en BehavioralOS."
+      used_by: [100-Architecture, 1300-Libraries, BQAS, BREO, Data Model]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Toda funcionalidad clínica debe alinearse con la ontología."
+    check: "Cada ejercicio del BERL debe mapear al menos un proceso de ontology.md"
+  - rule: "Ningún prompt de IA puede violar los principios éticos."
+    check: "Los guardrails deben referenciar PRN-001 (principles.md)"
+  - rule: "La interfaz de usuario no puede usar vocabulario prohibido."
+    check: "El BDS debe validar textos contra VOC-001 (vocabulary.md)"
+  - rule: "Todo pipeline del BPE debe ser consistente con la ontología de BPO."
+    check: "Cada pipeline del Behavioral Process Engine referencia procesos definidos en bpo-ontology.md"
+  - rule: "El BPG debe poder representar todas las relaciones de BPO."
+    check: "El Behavioral Process Graph mapea 1:1 las relaciones de bpo-ontology.md"
+  - rule: "El BXE debe poder explicar cualquier decisión del BIK."
+    check: "Cada decisión del Behavioral Intelligence Kernel es trazable a reglas y evidencia de bxe-spec.md"
+  - rule: "El BCMS debe integrarse con el modelo de datos existente."
+    check: "Las tablas clínicas del BCMS respetan el esquema clínico definido en data-model.md"
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Fundacional"
+  required_for:
+    - "Comprensión del dominio clínico"
+    - "Generación de prompts éticos"
+    - "Diseño de ejercicios basados en evidencia"
+  tokens_estimate: 2500
+  embedding_tags:
+    - "filosofia"
+    - "ontologia"
+    - "etica"
+    - "comportamiento"
+    - "rft"
+    - "pbt"
+    - "torticode"
+    - "process-engine"
+    - "process-ontology"
+    - "process-graph"
+    - "explainability"
+    - "intelligence-kernel"
+    - "clinical-management"
+    - "caseload"
+    - "clinic-operations"
+    - "scheduling"
+    - "poo"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 2.0.0
+    date: 2026-08-07
+    author: "Arquitectura de Software"
+    changes:
+      - "Exports de 000-Core completados a 15 conceptos: BPE, BPO y BPG ya exportados; agregados BXE, BIK, BCMS, BCIE, BCOE y BSI (foundation-index-exports)."
+      - "Agregadas 4 reglas de validación nuevas (BPE-BPO, BPG-BPO, BXE-BIK, BCMS-Data Model)."
+      - "Ampliados ai_context.embedding_tags con process-engine, explainability, intelligence-kernel, clinical-management, caseload, clinic-operations, scheduling, poo."
+      - "Bump de versión del módulo Core a 2.0.0."
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura Jefe"
+    changes:
+      - "Creación inicial del módulo Core."
+      - "Definición de la estructura de dependencias y exportaciones."
+      - "Establecimiento de reglas de validación para el BQAS."
+  - version: 1.2.0
+    date: 2026-07-27
+    author: "Arquitectura de Software"
+    changes:
+      - "Expansión de los 4 pilares POO en torticode-principles.md con analogías de Torticode, tablas por lenguaje y ejemplos en BehavioralOS."
+      - "Agregada exportación '4 Pilares POO (Expanded)' para arquitectura, librerías y equipos QA/BREO."
+      - "Bump de versión del módulo Core a 1.2.0."
+  - version: 1.1.0
+    date: 2026-07-23
+    author: "Arquitectura de Software"
+    changes:
+      - "Agregado TCD-001 (torticode-principles.md) como nuevo child."
+      - "Actualización de exportaciones para incluir principios Torticode."

@@ -1,0 +1,263 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 500-Experiences
+# Version: 2.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define el motor de gamificación y ejercicios
+# terapéuticos del BehavioralOS. Alberga el Behavioral
+# Exercise Research Lab (BERL), la biblioteca de mecánicas
+# universales (BML), el motor de procesos psicológicos,
+# el mapeo de intervenciones clínicas y el motor de juegos
+# ideográficos dinámicos. Es el corazón de la intervención
+# clínica gamificada.
+#
+# CONTENIDO:
+#   1. experience-engine.md       → BERL: laboratorio de diseño y ejecución
+#   2. mechanics-library.md       → BML: catálogo de mecánicas por proceso
+#   3. process-engine.md          → Motor de procesos (BPG-driven)
+#   4. clinical-processes.md      → Mapeo de intervenciones por proceso BPO
+#   5. ideographic-game-engine.md → Motor de juegos ideográficos 3D
+#
+# IMPORTANCIA:
+# Este módulo es donde la ciencia del comportamiento se
+# encuentra con el diseño de juegos. Cada ejercicio es una
+# hipótesis experimental que entrena procesos psicológicos
+# específicos del BPO, con telemetría para validación continua.
+# Desde v2.0.0, todo se organiza por PROCESOS, no por terapias.
+# ============================================================
+
+module:
+  id: 500-Experiences
+  name: "Experiencias Terapéuticas y Gamificación"
+  version: 2.0.0
+  status: Stable
+  implementation_level: 2
+  implementation_status: "Frozen — esperar a Nivel 1"
+  owner: "Diseño de Juegos & Psicología Clínica"
+  last_updated: 2026-07-14
+  description: >
+    Define el motor de gamificación y ejercicios terapéuticos del
+    BehavioralOS. Incluye el Behavioral Exercise Research Lab (BERL),
+    la biblioteca de mecánicas universales (BML), el motor de procesos
+    psicológicos, el mapeo de intervenciones clínicas y el motor de
+    juegos ideográficos dinámicos (Gemma 4 + Three.js). Desde v2.0.0,
+    todo se organiza por PROCESOS del BPO, no por terapias.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología, BPO y BPG guían el diseño de los ejercicios."
+  - id: 100-Architecture
+    reason: "La arquitectura define la integración con el Behavioral Twin y el frontend."
+  - id: 200-Backend
+    reason: "Las APIs y eventos permiten la telemetría y la comunicación."
+  - id: 300-Frontend
+    reason: "La experiencia del paciente (Nintendo) consume los ejercicios y renderiza Three.js."
+  - id: 400-AI
+    reason: "El AAO, TCCN y Gemma 4 se integran con la telemetría, narrativas y generación de juegos."
+  - id: 700-PracticeOS
+    reason: "El BCMS provee el plan de tratamiento y las prescripciones del terapeuta."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BERL-001
+    file: experience-engine.md
+    title: "Behavioral Exercise Research Lab (BERL) v2.0.0"
+    description: >
+      Define el motor de diseño, ejecución y validación de ejercicios
+      terapéuticos gamificados. Desde v2.0.0, se organiza por procesos
+      BPO (no por terapias), con genoma v2.0.0 que mapea a UUID de
+      procesos, soporte multi-nivel (individual/diadico/familiar/grupal),
+      e integración con el Ideographic Game Engine para generación
+      dinámica de minijuegos 3D.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Ciclo de vida de un ejercicio v2.0.0"
+      - "Genoma del ejercicio v2.0.0 (con UUID BPO)"
+      - "Sistema de versionado científico"
+      - "Soporte multi-nivel"
+
+  - id: BML-001
+    file: mechanics-library.md
+    title: "Behavioral Mechanics Library (BML) v2.0.0"
+    description: >
+      Define el catálogo universal de mecánicas de juego (47+)
+      organizadas por 7 familias, con mapeo explícito a procesos
+      BPO (UUID). Incluye mecánicas 3D (Balloon Burst, Resistance
+      Shield, Pikmin Missions, River Float), mecánicas multi-nivel
+      (diádicas, familiares, grupales) e impacto BPG declarado
+      en cada mecánica.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Catálogo de 47+ mecánicas por familia"
+      - "Mapeo a procesos BPO (UUID)"
+      - "Mecánicas 3D (4 nuevas)"
+      - "Mecánicas multi-nivel (8 nuevas)"
+      - "Afinidades y combinaciones"
+
+  - id: PE-001
+    file: process-engine.md
+    title: "Motor de Procesos Psicológicos v2.0.0"
+    description: >
+      Define el motor que conecta las mecánicas de juego con los
+      procesos del BPO (UUID). Desde v2.0.0, consulta el BPG del
+      paciente como centro de decisión, con Learning Graph dinámico,
+      recomendación basada en procesos débiles del BPG, y soporte
+      multi-nivel (individual, diádico, familiar, grupal).
+    priority: P0
+    estimated_read_time: 20 min
+    exports:
+      - "Learning Graph dinámico (BPG-driven)"
+      - "Mapeo de mecánicas BML a procesos BPO"
+      - "Recomendación basada en BPG"
+      - "Soporte multi-nivel"
+      - "Personalización idiográfica"
+
+  - id: CP-001
+    file: clinical-processes.md
+    title: "Mapeo de Intervenciones Clínicas v2.0.0"
+    description: >
+      Define la formulación clínica por PROCESOS BPO (no por
+      diagnósticos) y cómo las intervenciones (ACT, FAP, DBT,
+      PBT, Gottman, TIP, Sistémico, Neuropsicología) se traducen
+      en ejercicios gamificados organizados por proceso. Protocolos
+      por proceso y nivel de interacción, con adaptación por BPG
+      y AHEE.
+    priority: P1
+    estimated_read_time: 20 min
+    exports:
+      - "Formulación clínica por procesos BPO"
+      - "Mapeo de intervenciones a ejercicios por proceso"
+      - "Protocolos por proceso y nivel"
+      - "Integración con BCMS"
+      - "Soporte multi-nivel"
+
+  - id: IDE-001
+    file: ideographic-game-engine.md
+    title: "Motor de Juegos Ideográficos Dinámicos v1.0.0"
+    description: >
+      Define el pipeline completo de generación dinámica de minijuegos
+      3D: Gemma 4 genera configuraciones DSL JSON (mecánica, estímulos,
+      colores, victoria), Three.js renderiza el minijuego en tiempo
+      real. 4 mecánicas ideográficas base (absorber, soltar, equilibrar,
+      recolectar). Cada juego es único para cada paciente, reflejando
+      su BPG y su historia clínica.
+    priority: P0
+    estimated_read_time: 15 min
+    exports:
+      - "DSL JSON para juegos ideográficos"
+      - "Pipeline Gemma 4 → DSL → Three.js"
+      - "Mecánicas ideográficas (4 base)"
+      - "Event Sourcing de interacciones"
+      - "Validación de configuraciones DSL"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Ejercicios Terapéuticos (BERL v2.0.0)"
+      description: "Catálogo de ejercicios gamificados por proceso BPO con telemetría"
+      used_by: [Patient App, AAO, BSC, Behavioral Twin, Ideographic Game Engine]
+  - concept:
+      name: "Mecánicas Universales (BML v2.0.0)"
+      description: "Biblioteca de 47+ mecánicas de juego reutilizables con mapeo BPO"
+      used_by: [BERL, Process Engine, AHEE, Ideographic Game Engine]
+  - concept:
+      name: "Motor de Procesos (v2.0.0)"
+      description: "Conexión entre mecánicas y procesos BPO, BPG-driven"
+      used_by: [BERL, BCMS, AAO, BPG, Ideographic Game Engine]
+  - concept:
+      name: "Protocolos Clínicos (v2.0.0)"
+      description: "Formulación por procesos BPO, protocolos multi-intervención"
+      used_by: [Terapeutas, BCMS, BIP]
+  - concept:
+      name: "Juegos Ideográficos (IDE)"
+      description: "Generación dinámica de minijuegos 3D con Gemma 4 + Three.js"
+      used_by: [BERL, Patient App, BPG]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Todo ejercicio debe entrenar al menos un proceso BPO definido con UUID."
+    check: "El validador verifica que cada ejercicio tenga un mapeo a UUID de proceso BPO."
+  - rule: "Toda mecánica debe tener al menos un proceso BPO asociado (con UUID)."
+    check: "El validador verifica que cada mecánica tenga un mapeo a UUID de proceso BPO."
+  - rule: "Cada ejercicio debe tener un genoma completo (objetivo, procesos BPO, mecánicas, telemetría)."
+    check: "El validador verifica que el genoma tenga todos los campos obligatorios v2.0.0."
+  - rule: "Los protocolos clínicos deben estar validados por el ASC (Adaptive Scientific Council)."
+    check: "El validador verifica que cada protocolo tenga una firma de validación."
+  - rule: "Todo juego ideográfico debe generar un DSL JSON válido antes de renderizarse."
+    check: "El DSL Validator verifica estructura, seguridad y mapeo BPO."
+  - rule: "Cada mecánica 3D debe tener implementación en Three.js declarada."
+    check: "El validador verifica que las mecánicas 3D tengan campo '3d_implementation'."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Gamificación y Ejercicios Terapéuticos"
+  required_for:
+    - "Diseño de nuevos ejercicios terapéuticos por proceso BPO"
+    - "Implementación de mecánicas de juego (incluidas 3D)"
+    - "Configuración de telemetría y BPG"
+    - "Mapeo de intervenciones clínicas por proceso"
+    - "Generación de minijuegos ideográficos con Gemma 4"
+    - "Renderizado de escenas 3D con Three.js"
+  tokens_estimate: 6000
+  embedding_tags:
+    - "gamificación"
+    - "ejercicios"
+    - "berl"
+    - "bml"
+    - "mecánicas"
+    - "procesos"
+    - "bpo"
+    - "bpg"
+    - "act"
+    - "fap"
+    - "dbt"
+    - "pbt"
+    - "gottman"
+    - "three.js"
+    - "gemma"
+    - "juegos-ideográficos"
+    - "dsl"
+    - "godot"
+    - "jspsych"
+    - "telemetría"
+    - "protocolos-clínicos"
+    - "multi-nivel"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura de Gamificación"
+    changes:
+      - "Creación inicial del módulo de Experiencias."
+      - "Definición de los cuatro documentos principales: BERL, BML, Process Engine y Clinical Processes."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."
+  - version: 2.0.0
+    date: 2026-07-14
+    author: "Arquitectura de Gamificación"
+    changes:
+      - "Reorganización por PROCESOS BPO (UUID) en lugar de por terapias."
+      - "BERL v2.0.0: genoma con UUID de procesos BPO, integración BPG, soporte multi-nivel."
+      - "BML v2.0.0: 47+ mecánicas con mapeo BPO, 4 mecánicas 3D, 8 mecánicas multi-nivel."
+      - "Process Engine v2.0.0: BPG como centro de decisión, Learning Graph dinámico, recomendación multi-nivel."
+      - "Clinical Processes v2.0.0: formulación por procesos BPO, protocolos multi-intervención, soporte diádico/familiar/grupal."
+      - "Nuevo: ideographic-game-engine.md v1.0.0 (Gemma 4 + DSL JSON + Three.js)."
+      - "Integración con BCMS (plan de tratamiento) y BPG (grafo de procesos del paciente)."
+      - "Actualización de dependencias, exportaciones y reglas de validación."

@@ -1,0 +1,297 @@
+# ============================================================
+# BehavioralOS - AI Reading Profiles
+# Version: 1.0.0
+# ============================================================
+# PROPÓSITO:
+# Este archivo define qué documentos debe leer cada agente
+# de IA para optimizar el consumo de contexto y tokens.
+# Cada perfil está optimizado para un tipo específico de IA
+# y su área de especialización.
+# ============================================================
+
+profiles:
+  - agent: "OpenCode"
+    description: "Agente principal de desarrollo de código"
+    focus:
+      - "backend"
+      - "api"
+      - "database"
+      - "events"
+      - "workflows"
+      - "security"
+      - "deployment"
+      - "testing"
+      - "transaction-engine"
+      - "environment-variables"
+      - "libraries"  # NUEVO
+      - "strict_spec_schema"  # NUEVO
+      - "bcl"  # NUEVO
+      - "bpe"  # NUEVO - Motor de procesos
+      - "bpo"  # NUEVO - Ontología de procesos
+      - "bpg"  # NUEVO - Grafo de procesos
+      - "bxe"  # NUEVO - Explicabilidad
+      - "bcms"  # NUEVO - Gestión clínica
+      - "bcie"  # NUEVO - Inteligencia clínica
+      - "bcoe"  # NUEVO - Operaciones clínica
+      - "bsi"  # NUEVO - Programación de sesiones
+    ignore:
+      - "frontend"
+      - "ui"
+      - "design"
+      - "accessibility"
+      - "gamification"
+      - "exercises"
+      - "brand-studio"
+      - "website-builder"
+      - "automation-studio"
+      - "relationship-engine"
+    priority_files:
+      - "index/master.yaml"
+      - "index/environment-variables.md"
+      - "index/EVOLUTION.md"
+      - "000-Core/ontology.md"
+      - "100-Architecture/system-architecture.md"
+      - "200-Backend/api-graph.md"
+      - "200-Backend/database-graph.md"
+      - "200-Backend/events-and-workflows.md"
+      - "200-Backend/transaction-engine.md"
+      - "900-Security/security.md"
+      - "1300-Libraries/strict_spec_schema.md"  # NUEVO
+      - "1300-Libraries/bcl_complete_implementation.md"  # NUEVO
+      - "1300-Libraries/template_library.md"  # NUEVO
+      - "000-Core/behavioral-process-engine.md"  # NUEVO
+      - "000-Core/bpo-ontology.md"  # NUEVO
+      - "000-Core/bpg-spec.md"  # NUEVO
+      - "100-Architecture/bxe-spec.md"  # NUEVO
+      - "700-PracticeOS/bcms-detailed.md"  # NUEVO
+      - "700-PracticeOS/bcie-spec.md"  # NUEVO
+      - "700-PracticeOS/bcoe-spec.md"  # NUEVO
+      - "700-PracticeOS/bsi-spec.md"  # NUEVO
+
+  - agent: "Kombai"
+    description: "Agente de diseño UI/UX y frontend"
+    focus:
+      - "frontend"
+      - "ui"
+      - "design-system"
+      - "accessibility"
+      - "patient-app"
+      - "therapist-app"
+      - "ahee"
+      - "brand-studio"
+      - "website-builder"
+    ignore:
+      - "backend"
+      - "database"
+      - "api"
+      - "security"
+      - "testing"
+      - "deployment"
+      - "transaction-engine"
+      - "automation-studio"
+      - "relationship-engine"
+      - "environment-variables"
+      - "libraries"
+    priority_files:
+      - "index/master.yaml"
+      - "index/README.md"
+      - "000-Core/philosophy.md"
+      - "000-Core/principles.md"
+      - "300-Frontend/design-system.md"
+      - "300-Frontend/ui-graph.md"
+      - "300-Frontend/accessibility.md"
+      - "300-Frontend/patient-app.md"
+      - "300-Frontend/therapist-app.md"
+      - "300-Frontend/brand-studio.md"
+      - "600-Commerce/website-builder.md"
+
+  - agent: "Claude"
+    description: "Agente de psicología y ciencia del comportamiento"
+    focus:
+      - "clinical"
+      - "behavioral"
+      - "ontology"
+      - "processes"
+      - "exercises"
+      - "aao"
+      - "berl"
+      - "companion"
+      - "relationship-engine"
+      - "automation-studio"
+      - "libraries"  # NUEVO
+      - "bpe"  # NUEVO - Motor de procesos
+      - "bpo"  # NUEVO - Ontología de procesos
+      - "bpg"  # NUEVO - Grafo de procesos
+    ignore:
+      - "commerce"
+      - "practice"
+      - "analytics"
+      - "deployment"
+      - "infrastructure"
+      - "transaction-engine"
+      - "brand-studio"
+      - "website-builder"
+      - "environment-variables"
+      - "strict_spec_schema"
+      - "bcl"
+    priority_files:
+      - "index/master.yaml"
+      - "index/README.md"
+      - "index/EVOLUTION.md"
+      - "000-Core/ontology.md"
+      - "000-Core/philosophy.md"
+      - "000-Core/behavioral-process-engine.md"  # NUEVO
+      - "000-Core/bpo-ontology.md"  # NUEVO
+      - "000-Core/bpg-spec.md"  # NUEVO
+      - "100-Architecture/behavioral-twin.md"
+      - "400-AI/adaptive-orchestrator.md"
+      - "400-AI/companion.md"
+      - "500-Experiences/experience-engine.md"
+      - "500-Experiences/mechanics-library.md"
+      - "500-Experiences/process-engine.md"
+      - "500-Experiences/clinical-processes.md"
+      - "500-Experiences/ideographic-game-engine.md"  # NUEVO - Motor de juegos ideográficos
+      - "700-PracticeOS/relationship-engine.md"
+      - "700-PracticeOS/automation-studio.md"
+      - "1300-Libraries/libraries.md"  # NUEVO
+
+  - agent: "Gemini"
+    description: "Agente de arquitectura y planificación"
+    focus:
+      - "architecture"
+      - "system-architecture"
+      - "engines-overview"
+      - "integration"
+      - "testing"
+      - "deployment"
+      - "evolution"
+    ignore:
+      - "ui"
+      - "design"
+      - "gamification"
+      - "exercises"
+      - "clinical"
+      - "brand-studio"
+      - "website-builder"
+      - "automation-studio"
+      - "relationship-engine"
+      - "transaction-engine"
+      - "environment-variables"
+      - "libraries"
+    priority_files:
+      - "index/master.yaml"
+      - "index/README.md"
+      - "index/EVOLUTION.md"
+      - "100-Architecture/system-architecture.md"
+      - "100-Architecture/engines-overview.md"
+      - "1000-Integration/bril-spec.md"
+      - "1100-Testing/bqas-spec.md"
+      - "1200-Deployment/devops-spec.md"
+
+  - agent: "Cursor"
+    description: "Agente de código y desarrollo técnico"
+    focus:
+      - "code"
+      - "types"
+      - "components"
+      - "tests"
+      - "api"
+      - "database"
+      - "transaction-engine"
+      - "automation-studio"
+      - "environment-variables"
+      - "libraries"  # NUEVO
+      - "strict_spec_schema"  # NUEVO
+      - "template_library"  # NUEVO
+      - "bcl"  # NUEVO
+    ignore:
+      - "philosophy"
+      - "vocabulary"
+      - "business-model"
+      - "design"
+      - "gamification"
+      - "brand-studio"
+      - "website-builder"
+      - "relationship-engine"
+    priority_files:
+      - "index/master.yaml"
+      - "index/environment-variables.md"
+      - "index/README.md"
+      - "200-Backend/api-graph.md"
+      - "200-Backend/database-graph.md"
+      - "200-Backend/events-and-workflows.md"
+      - "200-Backend/transaction-engine.md"
+      - "300-Frontend/design-system.md"
+      - "400-AI/ai-core.md"
+      - "500-Experiences/experience-engine.md"
+      - "600-Commerce/business-model.md"
+      - "700-PracticeOS/practice-os.md"
+      - "700-PracticeOS/automation-studio.md"
+      - "1300-Libraries/strict_spec_schema.md"  # NUEVO
+      - "1300-Libraries/template_library.md"  # NUEVO
+      - "1300-Libraries/bcl_complete_implementation.md"  # NUEVO
+
+  - agent: "Windsurf"
+    description: "Agente de integración y orquestación"
+    focus:
+      - "integration"
+      - "bril"
+      - "event-bus"
+      - "adapters"
+      - "queues"
+      - "websockets"
+      - "automation-studio"
+      - "transaction-engine"
+    ignore:
+      - "frontend"
+      - "ui"
+      - "design"
+      - "philosophy"
+      - "vocabulary"
+      - "brand-studio"
+      - "website-builder"
+      - "relationship-engine"
+      - "environment-variables"
+      - "libraries"
+    priority_files:
+      - "index/master.yaml"
+      - "index/README.md"
+      - "1000-Integration/bril-spec.md"
+      - "200-Backend/events-and-workflows.md"
+      - "200-Backend/transaction-engine.md"
+      - "100-Architecture/engines-overview.md"
+      - "200-Backend/api-graph.md"
+      - "700-PracticeOS/automation-studio.md"
+
+  - agent: "Default"
+    description: "Perfil por defecto para agentes sin especialización"
+    focus:
+      - "all"
+    ignore:
+      - []
+    priority_files:
+      - "index/master.yaml"
+      - "index/README.md"
+      - "index/EVOLUTION.md"
+      - "index/environment-variables.md"
+      - "000-Core/philosophy.md"
+      - "100-Architecture/system-architecture.md"
+      - "200-Backend/api-graph.md"
+      - "300-Frontend/design-system.md"
+      - "400-AI/ai-core.md"
+      - "500-Experiences/experience-engine.md"
+      - "500-Experiences/ideographic-game-engine.md"  # NUEVO - Motor de juegos ideográficos
+      - "900-Security/security.md"
+      - "1300-Libraries/libraries.md"  # NUEVO
+      - "1300-Libraries/strict_spec_schema.md"  # NUEVO
+      - "1300-Libraries/template_library.md"  # NUEVO
+      - "1300-Libraries/bcl_complete_implementation.md"  # NUEVO
+      - "000-Core/behavioral-process-engine.md"  # NUEVO
+      - "000-Core/bpo-ontology.md"  # NUEVO
+      - "000-Core/bpg-spec.md"  # NUEVO
+      - "100-Architecture/bxe-spec.md"  # NUEVO
+      - "100-Architecture/bik-architecture.md"  # NUEVO
+      - "700-PracticeOS/bcms-detailed.md"  # NUEVO
+      - "700-PracticeOS/bcie-spec.md"  # NUEVO
+      - "700-PracticeOS/bcoe-spec.md"  # NUEVO
+      - "700-PracticeOS/bsi-spec.md"  # NUEVO

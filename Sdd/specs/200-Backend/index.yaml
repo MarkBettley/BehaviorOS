@@ -1,0 +1,203 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 200-Backend
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define la implementación técnica del backend del
+# BehavioralOS. Establece la arquitectura de servicios, las APIs,
+# el modelo de datos, los eventos, los workflows y el motor
+# transaccional que garantiza la consistencia de las operaciones.
+#
+# CONTENIDO:
+#   1. api-graph.md          → APIs REST, WebSockets, contratos y versionado
+#   2. database-graph.md     → Esquemas, tablas, índices, RLS y migraciones
+#   3. events-and-workflows.md → Eventos, Sagas, Workflows (Temporal.io)
+#   4. transaction-engine.md → Motor de consistencia transaccional (idempotencia, Sagas)  # NUEVO
+#
+# IMPORTANCIA:
+# Esta carpeta es el puente entre la arquitectura conceptual (100-Architecture)
+# y el código real. Define cómo los motores (AAO, BERL, TCCN, etc.) se comunican
+# entre sí y con el exterior, y cómo se garantiza la consistencia de los datos.
+# ============================================================
+
+module:
+  id: 200-Backend
+  name: "Backend y Servicios"
+  version: 1.0.0
+  status: Stable
+  owner: "Backend & Arquitectura de Software"
+  last_updated: 2026-07-13
+  description: >
+    Define la implementación técnica del backend del BehavioralOS:
+    APIs, bases de datos, eventos, workflows y motor transaccional.
+    Es la capa que materializa la arquitectura en código y servicios desplegables.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología y los principios guían el diseño de las APIs y los datos."
+  - id: 100-Architecture
+    reason: "La arquitectura define las capas, dominios y contratos que el backend implementa."
+  - id: 900-Security
+    reason: "La seguridad (BSOS) proporciona autenticación, autorización y cifrado para el backend."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: API-001
+    file: api-graph.md
+    title: "API Graph – Contratos y Servicios"
+    description: >
+      Define todas las APIs del BehavioralOS: REST (FastAPI), WebSockets,
+      GraphQL (opcional) y el versionado semántico. Especifica los endpoints
+      agrupados por dominio (auth, clinical, commerce, practice, analytics, etc.),
+      los modelos de entrada/salida, los códigos de estado, la autenticación
+      (JWT + RLS) y la documentación OpenAPI 3.0.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Catálogo de APIs"
+      - "Contratos de entrada/salida"
+      - "Políticas de versionado"
+
+  - id: DB-001
+    file: database-graph.md
+    title: "Database Graph – Esquemas y Migraciones"
+    description: >
+      Define la implementación del modelo de datos: esquemas (auth, clinical,
+      commerce, practice, analytics, audit), tablas con campos y tipos,
+      relaciones, índices, políticas RLS (Row Level Security) y estrategia de
+      migraciones (Alembic). Incluye ejemplos de consultas frecuentes y
+      optimización de rendimiento.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Esquema de base de datos"
+      - "Políticas RLS"
+      - "Estrategia de migraciones"
+
+  - id: EVT-001
+    file: events-and-workflows.md
+    title: "Eventos y Workflows – Comunicación Asíncrona"
+    description: >
+      Define el sistema de eventos (BRIL) y los workflows largos (Temporal.io).
+      Especifica los tipos de eventos, el bus de eventos (Redis Streams/NATS),
+      los patrones de publicación/suscripción, las Sagas para transacciones
+      distribuidas, los reintentos, los circuit breakers y las políticas de
+      entrega (at-least-once, exactly-once). También cubre los workflows de
+      onboarding, pago, facturación, seguimiento y recuperación.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Catálogo de eventos"
+      - "Definición de workflows"
+      - "Políticas de entrega y reintentos"
+
+  - id: BTCE-001  # NUEVO
+    file: transaction-engine.md
+    title: "Behavioral Transaction & Consistency Engine"
+    description: >
+      Define el motor de consistencia transaccional del BehavioralOS.
+      Especifica los mecanismos de idempotencia (UUID v7), el manejo de
+      transacciones distribuidas (Sagas), el Event Sourcing para reconstrucción
+      de estados, y las políticas de consistencia (fuerte y eventual).
+      Garantiza que operaciones críticas (pagos, facturación, expedientes)
+      sean confiables y auditables incluso ante fallos del sistema.
+    priority: P0
+    estimated_read_time: 20 min
+    exports:
+      - "Mecanismos de idempotencia"
+      - "Gestión de Sagas y compensaciones"
+      - "Event Sourcing y reconstrucción de estados"
+      - "Políticas de consistencia"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "APIs del Sistema"
+      description: "Endpoints REST y WebSockets para todos los servicios"
+      used_by: [Frontend, BRIL, BQAS, Integraciones externas]
+  - concept:
+      name: "Modelo de Datos"
+      description: "Esquemas, tablas, índices y políticas RLS"
+      used_by: [BDL, BKGE, BWM, BSC, BIP]
+  - concept:
+      name: "Eventos y Workflows"
+      description: "Sistema de eventos asíncronos y workflows largos"
+      used_by: [BRIL, BCE, BPOS, BSC, AAO, BERL, TCCN]
+  - concept:
+      name: "Motor Transaccional"  # NUEVO
+      description: "Idempotencia, Sagas y consistencia para operaciones críticas"
+      used_by: [BCE, BPOS, BRIL, BQAS]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Toda API debe estar documentada con OpenAPI 3.0."
+    check: "El validador comprueba que cada endpoint tenga su definición OpenAPI."
+  - rule: "Toda tabla debe tener políticas RLS activas."
+    check: "Las migraciones incluyen políticas RLS; el validador verifica su existencia."
+  - rule: "Todos los eventos deben ser idempotentes."
+    check: "Cada evento tiene un `idempotency_key` y se valida su procesamiento único."
+  - rule: "Los workflows largos deben tener compensaciones (Sagas)."
+    check: "Cada workflow definido en Temporal.io tiene una compensación asociada."
+  - rule: "Las transacciones críticas deben ser auditables y recuperables."  # NUEVO
+    check: "El validador verifica que las operaciones críticas generen registros de auditoría y tengan mecanismos de recuperación."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Backend e Infraestructura"
+  required_for:
+    - "Implementación de APIs"
+    - "Diseño de esquemas de base de datos"
+    - "Configuración de eventos y workflows"
+    - "Optimización de rendimiento"
+    - "Implementación de consistencia transaccional"  # NUEVO
+  tokens_estimate: 4000
+  embedding_tags:
+    - "backend"
+    - "api"
+    - "rest"
+    - "websockets"
+    - "base-de-datos"
+    - "postgresql"
+    - "eventos"
+    - "workflows"
+    - "sagas"
+    - "temporal"
+    - "redis"
+    - "fastapi"
+    - "supabase"
+    - "rl"
+    - "migraciones"
+    - "idempotencia"
+    - "transaccional"  # NUEVO
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura Backend"
+    changes:
+      - "Creación inicial del módulo de Backend."
+      - "Definición de los tres documentos principales: API Graph, Database Graph y Events & Workflows."
+  - version: 1.1.0
+    date: 2026-07-13
+    author: "Arquitectura Backend"
+    changes:
+      - "Añadido el documento transaction-engine.md."
+      - "Actualizadas las exportaciones con el motor transaccional."
+      - "Añadida nueva regla de validación para transacciones críticas."
+      - "Actualizada la estimación de tokens."

@@ -1,0 +1,306 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 600-Commerce
+# Version: 2.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define el motor comercial del BehavioralOS:
+# modelo de negocio multicapa (3 verticales), suscripciones,
+# pagos, facturación, marketplace, cupones, inteligencia
+# comercial, licencias y el Website Builder para terapeutas.
+#
+# CONTENIDO:
+#   1. business-model.md   → BCE: modelo de negocio, suscripciones, pagos, facturación, marketplace
+#   2. licensing-system.md  → LIC: sistema de licencias, tokens, RBAC, verificación de acceso
+#   3. website-builder.md   → BWB: constructor de sitios web para terapeutas (drag & drop)
+#   4. service-landing.md   → SLS: landing pública de dos audiencias + formulario de leads
+#
+# IMPORTANCIA:
+# Un sistema clínico sin un motor comercial sólido no es viable.
+# El BCE asegura que los terapeutas puedan cobrar por sus servicios,
+# los pacientes puedan pagar de forma segura, y la plataforma
+# pueda generar ingresos sostenibles para su evolución.
+# El LIC controla el acceso a funcionalidades según el plan contratado.
+# El Website Builder permite a los terapeutas tener presencia online.
+# El service landing (SLS) da presencia pública a la plataforma y captura leads comerciales.
+# ============================================================
+
+module:
+  id: 600-Commerce
+  name: "Motor Comercial, Licencias y Facturación"
+  version: 2.0.0
+  status: Stable
+  implementation_level: 4
+  implementation_status: "Frozen — esperar a Nivel 3"
+  owner: "Comercio & Arquitectura Financiera"
+  last_updated: 2026-07-14
+  description: >
+    Define el Behavioral Commerce Engine (BCE) con su modelo de
+    negocio multicapa (3 verticales: Pacientes, Psicólogos, Clínicas
+    + Estudiantes), 4 formas de venta y 4 niveles de acompañamiento.
+    Incluye suscripciones, pagos, facturación CFDI, marketplace,
+    cupones, inteligencia comercial y el Sistema de Licencias (LIC)
+    que gestiona tokens, RBAC y verificación de acceso. También
+    incluye el Behavioral Website Builder (BWB) para sitios web
+    profesionales de terapeutas.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "Los principios y la ontología guían la ética comercial (no manipulación, transparencia)."
+  - id: 100-Architecture
+    reason: "La arquitectura define la integración del BCE con el resto del sistema."
+  - id: 200-Backend
+    reason: "Las APIs, bases de datos y eventos soportan las transacciones comerciales."
+  - id: 300-Frontend
+    reason: "El paciente y el terapeuta interactúan con el comercio a través de la interfaz."
+  - id: 400-AI
+    reason: "La IA (TCCN) puede notificar sobre pagos, suscripciones y créditos."
+  - id: 700-PracticeOS
+    reason: "El BCE se integra con la agenda y los expedientes para asociar pagos a servicios."
+  - id: 900-Security
+    reason: "La seguridad, RBAC y los consentimientos protegen los datos financieros y de acceso."
+  - id: BCMS
+    reason: "El sistema de licencias se integra con la gestión clínica para asignar acceso a pacientes."
+  - id: BCOE
+    reason: "Los consentimientos informados regulan el acceso a datos clínicos según la licencia."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BCE-001
+    file: business-model.md
+    title: "Behavioral Commerce Engine (BCE)"
+    description: >
+      Define el motor comercial completo del BehavioralOS con su modelo
+      de negocio en 3 verticales (Pacientes, Psicólogos SaaS, Clínicas
+      + Estudiantes), 4 formas de venta (App, Tratamiento, Programa,
+      Mantenimiento), 4 niveles de acompañamiento, modelo de comisión
+      (5% marketplace, 0% terapia), suscripciones, pagos (Stripe,
+      Mercado Pago), facturación CFDI 4.0, marketplace, cupones,
+      créditos IA por plan e inteligencia comercial (KPIs).
+    priority: P0
+    estimated_read_time: 35 min
+    exports:
+      - "Modelo de negocio multicapa (3 verticales, 4 formas de venta)"
+      - "Sistema de suscripciones (planes, ciclos, renovaciones)"
+      - "Procesamiento de pagos (Stripe, Mercado Pago)"
+      - "Facturación CFDI 4.0"
+      - "Marketplace de productos digitales"
+      - "Modelo de comisión"
+      - "Niveles de acompañamiento"
+      - "Créditos IA por plan"
+      - "Inteligencia comercial (KPIs)"
+
+  - id: LIC-001
+    file: licensing-system.md
+    title: "Sistema de Licencias y Acceso (LIC)"
+    description: >
+      Define el sistema de licencias y control de acceso del BehavioralOS.
+      Genera tokens JWT con expiración, gestiona RBAC (7 roles, 20+ permisos),
+      verifica acceso en tiempo real (middleware FastAPI), suspende o revoca
+      licencias de forma inmediata (Redis), y soporta el modelo dual de
+      licenciamiento (incluido vs. compartido). Se integra con BCE
+      (activación por pago), BCMS (asignación a pacientes), BCOE
+      (consentimientos) y Stripe/Mercado Pago (webhooks).
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Generador de tokens JWT con expiración"
+      - "Control RBAC (roles y permisos)"
+      - "Verificador de acceso (middleware FastAPI)"
+      - "Suspensión/revocación inmediata (Redis)"
+      - "Modelo dual de licenciamiento"
+      - "Integración con BCE, BCMS, BCOE, Stripe"
+
+  - id: WBS-001
+    file: website-builder.md
+    title: "Behavioral Website Builder (BWB)"
+    description: >
+      Define una herramienta visual (drag & drop) que permite a los
+      terapeutas crear y gestionar su propio sitio web profesional,
+      integrado con la plataforma BehavioralOS. Incluye plantillas
+      predefinidas, personalización de colores y logo, integración
+      con BCE (pagos y suscripciones) y con BPOS (agenda y reserva
+      de citas). También incluye gestión de SEO, analytics y hosting
+      en la infraestructura de BehavioralOS.
+    priority: P1
+    estimated_read_time: 25 min
+    exports:
+      - "Editor visual (drag & drop)"
+      - "Plantillas de sitios web (temas)"
+      - "Integración con BCE (pagos, suscripciones, marketplace)"
+      - "Integración con BPOS (agenda, citas, CRM)"
+      - "Gestión de SEO y analytics"
+      - "Publicación y hosting"
+
+  - id: SLS-001
+    file: service-landing.md
+    title: "BehavioralOS Service Landing (SLS)"
+    description: >
+      Define la landing pública del BehavioralOS en un único dominio con dos
+      audiencias (pacientes / clínicas y psicólogos). Presenta contenido
+      informativo veraz no clínico, planee/pricing y un formulario de contacto
+      (leads) con validación, deduplicación y consentimiento. Cumple SEO
+      básico, WCAG AA y rendimiento Lighthouse ≥90. Sin chatbot en la
+      superficie comercial (decisión de producto: form only).
+    priority: P1
+    estimated_read_time: 10 min
+    exports:
+      - "Landing de un dominio con dos audiencias"
+      - "Contenido informativo veraz por audiencia"
+      - "Formulario de contacto (leads) con validación y consentimiento"
+      - "Sitemap y metadata SEO"
+      - "Criterios Lighthouse ≥90 / WCAG AA"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Modelo de Negocio"
+      description: "3 verticales, 4 formas de venta, 4 niveles de acompañamiento"
+      used_by: [Patient App, Therapist App, Admin Dashboard, BIP]
+  - concept:
+      name: "Suscripciones"
+      description: "Planes, ciclos, renovaciones y cancelaciones por vertical"
+      used_by: [Patient App, Therapist App, BPOS, BIP, LIC]
+  - concept:
+      name: "Procesamiento de Pagos"
+      description: "Stripe y Mercado Pago para pagos seguros"
+      used_by: [Patient App, BCE Webhooks, LIC]
+  - concept:
+      name: "Facturación CFDI 4.0"
+      description: "Generación de facturas fiscales con timbrado (incluida sin costo en planes SaaS)"
+      used_by: [Patient App, BCE, Facturapi]
+  - concept:
+      name: "Marketplace"
+      description: "Venta de productos digitales (5% comisión) y terapia (0% comisión)"
+      used_by: [Therapist App, Patient App, BCE]
+  - concept:
+      name: "Cupones y Promociones"
+      description: "Gestión de descuentos y campañas comerciales"
+      used_by: [BCE, Patient App]
+  - concept:
+      name: "Créditos IA"
+      description: "Bolsa mensual de créditos IA por plan (10k-600k)"
+      used_by: [400-AI, LIC, Patient App, Therapist App]
+  - concept:
+      name: "Inteligencia Comercial (KPIs)"
+      description: "Métricas de ingresos, retención y valor de vida del cliente"
+      used_by: [Therapist App, Admin Dashboard, BIP]
+  - concept:
+      name: "Licencias y Acceso"
+      description: "Tokens JWT, RBAC, verificación de acceso, revocación inmediata"
+      used_by: [Backend (FastAPI), Patient App, Therapist App, BCE, BCMS, BCOE]
+  - concept:
+      name: "Website Builder"
+      description: "Constructor de sitios web para terapeutas"
+      used_by: [Therapist App, BPOS, BCE]
+  - concept:
+      name: "Service Landing (SLS)"
+      description: "Landing pública de dos audiencias con formulario de leads"
+      used_by: [Patient App, BCE]
+  - concept:
+      name: "Formulario de Leads"
+      description: "Captura de contacto comercial con validación, deduplicación y consentimiento"
+      used_by: [BCE, Backend (FastAPI)]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Los pagos deben ser idempotentes (evitar cobros duplicados)."
+    check: "Las pruebas de integración verifican que cada transacción tenga un idempotency_key."
+  - rule: "Las facturas CFDI deben cumplir con el estándar 4.0."
+    check: "El validador verifica la estructura del XML antes del timbrado."
+  - rule: "Las suscripciones deben renovarse automáticamente según el plan."
+    check: "Las pruebas de integración simulan ciclos de renovación."
+  - rule: "Los cupones no deben permitir descuentos que dejen el precio en cero sin autorización."
+    check: "El validador verifica que el precio final sea > 0 (a menos que sea una promoción de prueba)."
+  - rule: "La comisión de terapia debe ser 0% (diferenciador)."
+    check: "Auditoría de transacciones verifica que no se cobra comisión por sesiones."
+  - rule: "Facturación SAT incluida sin costo en planes SaaS."
+    check: "Auditoría de billing verifica que Professional no factura extra por CFDI."
+  - rule: "Los tokens JWT deben tener expiración y poder ser revocados."
+    check: "Pruebas de LIC verifican generación, verificación y revocación."
+  - rule: "La revocación de tokens debe ser efectiva en < 1 minuto."
+    check: "Pruebas de integración miden latencia de Redis para revocación."
+  - rule: "RBAC debe denegar accesos no autorizados."
+    check: "Pruebas de permisos verifican que cada rol solo accede a sus endpoints."
+  - rule: "El Website Builder debe generar sitios web accesibles (WCAG AA) y responsivos."
+    check: "Las pruebas de accesibilidad y responsividad verifican los sitios generados."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Comercio, Finanzas y Seguridad"
+  required_for:
+    - "Implementación del modelo de negocio multicapa"
+    - "Configuración de suscripciones por vertical"
+    - "Implementación del sistema de licencias (LIC)"
+    - "Configuración de facturación CFDI"
+    - "Diseño de marketplace"
+    - "Análisis de KPIs comerciales"
+    - "Desarrollo del Website Builder"
+    - "Implementación de RBAC"
+  tokens_estimate: 5000
+  embedding_tags:
+    - "comercio"
+    - "suscripciones"
+    - "pagos"
+    - "stripe"
+    - "mercadopago"
+    - "facturacion"
+    - "cfdi"
+    - "sat"
+    - "marketplace"
+    - "cupones"
+    - "kpis"
+    - "inteligencia-comercial"
+    - "licencias"
+    - "tokens"
+    - "jwt"
+    - "rbac"
+    - "acceso"
+    - "revocacion"
+    - "website-builder"
+    - "editor-visual"
+    - "modelo-de-negocio"
+    - "verticales"
+    - "acompañamiento"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura Comercial"
+    changes:
+      - "Creación inicial del módulo de Comercio."
+      - "Definición del Business Model (BCE v1)."
+  - version: 1.1.0
+    date: 2026-07-13
+    author: "Arquitectura Comercial"
+    changes:
+      - "Añadido el documento website-builder.md."
+      - "Actualizadas las exportaciones con Website Builder."
+      - "Añadida nueva regla de validación para accesibilidad de sitios web."
+      - "Actualizada la estimación de tokens."
+  - version: 2.0.0
+    date: 2026-07-14
+    author: "Arquitectura Comercial"
+    changes:
+      - "Reestructuración completa del modelo de negocio (BCE v2.0): 3 verticales, 4 formas de venta, 4 niveles de acompañamiento."
+      - "Añadido el documento licensing-system.md (LIC-001)."
+      - "Añadidas dependencias con BCMS y BCOE."
+      - "Añadidas exportaciones: Modelo de Negocio, Créditos IA, Licencias y Acceso."
+      - "Añadidas reglas de validación: 0% comisión terapia, facturación SAT incluida, tokens JWT, RBAC."
+      - "Actualizada la estimación de tokens a 5000."
+      - "Actualizado el description del módulo."

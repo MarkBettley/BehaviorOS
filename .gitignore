@@ -1,0 +1,61 @@
+# BehavioralOS – archivos ignorados por Git
+
+# Variables de entorno (nunca commitear secretos)
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+!.env.*.example
+
+# Local credentials and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+
+# Volúmenes de contenedores locales
+volumes/db/data/
+volumes/storage/
+volumes/kong/*.yml.bak
+
+# Dependencias y artefactos de build
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.cache/
+.supabase/
+tmp/
+temp/
+*.tmp
+
+# Local backups and database dumps
+*.bak
+*.backup
+*.dump
+
+# Logs
+*.log
+logs/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Agent team infrastructure
+.atl/

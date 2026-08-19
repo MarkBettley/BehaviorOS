@@ -1,0 +1,203 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 1100-Testing
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define el Behavioral Quality Assurance System
+# (BQAS), el sistema de aseguramiento de calidad del BehavioralOS.
+# Garantiza que cada cambio en el código mantenga la integridad
+# científica, clínica, técnica, de seguridad y de experiencia
+# de usuario a través de pruebas unitarias, de integración,
+# clínicas, científicas, de seguridad, de rendimiento y de
+# accesibilidad.
+#
+# CONTENIDO:
+#   1. bqas-spec.md   → BQAS: Testing unitario, de integración,
+#                        clínico, científico, de seguridad,
+#                        de rendimiento, de accesibilidad
+#
+# IMPORTANCIA:
+# La calidad no es un añadido; es un requisito fundamental en
+# un sistema clínico. Un error en el código puede tener
+# consecuencias graves en la salud de los pacientes. El BQAS
+# es la red de seguridad que protege a los usuarios, a los
+# terapeutas y a la plataforma.
+# ============================================================
+
+module:
+  id: 1100-Testing
+  name: "Aseguramiento de Calidad y Testing"
+  version: 1.0.0
+  status: Stable
+  implementation_level: 4
+  implementation_status: "Frozen — esperar a Nivel 3"
+  owner: "Calidad de Software & DevOps"
+  last_updated: 2026-07-01
+  description: >
+    Define el Behavioral Quality Assurance System (BQAS),
+    que garantiza la integridad científica, clínica, técnica,
+    de seguridad y de experiencia de usuario a través de pruebas
+    unitarias, de integración, clínicas, científicas, de seguridad,
+    de rendimiento y de accesibilidad.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología y los principios guían las pruebas clínicas."
+  - id: 100-Architecture
+    reason: "La arquitectura define los componentes a probar."
+  - id: 200-Backend
+    reason: "Las pruebas de integración y API dependen del backend."
+  - id: 300-Frontend
+    reason: "Las pruebas de UI y accesibilidad dependen del frontend."
+  - id: 400-AI
+    reason: "Las pruebas de IA y guardrails dependen de los motores de IA."
+  - id: 500-Experiencies
+    reason: "Las pruebas de ejercicios dependen del BERL."
+  - id: 600-Commerce
+    reason: "Las pruebas de pagos y facturación dependen del BCE."
+  - id: 700-PracticeOS
+    reason: "Las pruebas de práctica clínica dependen del BPOS."
+  - id: 800-Analytics
+    reason: "Las pruebas de modelos predictivos dependen del BIP."
+  - id: 900-Security
+    reason: "Las pruebas de seguridad dependen del BSOS."
+  - id: 1000-Integration
+    reason: "Las pruebas de integración dependen del BRIL."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BQAS-001
+    file: bqas-spec.md
+    title: "Behavioral Quality Assurance System (BQAS)"
+    description: >
+      Define el sistema de aseguramiento de calidad del BehavioralOS:
+      pruebas unitarias (Pytest, Jest), pruebas de integración
+      (TestContainers, Docker), pruebas clínicas (validación de
+      lógica clínica), pruebas científicas (validación de modelos),
+      pruebas de IA (evaluación de alucinaciones y seguridad),
+      pruebas de seguridad (OWASP ZAP, Bandit, Semgrep),
+      pruebas de rendimiento (k6, Locust), pruebas de accesibilidad
+      (axe-core, Lighthouse), y pruebas de regresión. Incluye
+      Quality Gates, cobertura de código y estrategia de CI/CD.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Pruebas unitarias"
+      - "Pruebas de integración"
+      - "Pruebas clínicas"
+      - "Pruebas científicas"
+      - "Pruebas de IA"
+      - "Pruebas de seguridad"
+      - "Pruebas de rendimiento"
+      - "Pruebas de accesibilidad"
+      - "Pruebas de regresión"
+      - "Quality Gates y cobertura"
+      - "Estrategia de CI/CD"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Pruebas unitarias"
+      description: "Pytest, Jest para pruebas de componentes individuales"
+      used_by: [Todos los módulos, CI/CD]
+  - concept:
+      name: "Pruebas de integración"
+      description: "TestContainers, Docker para pruebas de servicios completos"
+      used_by: [Todos los módulos, CI/CD]
+  - concept:
+      name: "Pruebas clínicas"
+      description: "Validación de lógica clínica (ej. procesos, hipótesis)"
+      used_by: [AAO, BERL, TCCN, Behavioral Twin]
+  - concept:
+      name: "Pruebas científicas"
+      description: "Validación de modelos (ej. NetworkX, statsmodels)"
+      used_by: [BIP, BSC, BROS]
+  - concept:
+      name: "Pruebas de IA"
+      description: "Evaluación de alucinaciones, seguridad y coherencia"
+      used_by: [TCCN, AAO, RAG]
+  - concept:
+      name: "Pruebas de seguridad"
+      description: "OWASP ZAP, Bandit, Semgrep, Trivy"
+      used_by: [Todos los módulos, CI/CD]
+  - concept:
+      name: "Pruebas de rendimiento"
+      description: "k6, Locust para pruebas de carga y estrés"
+      used_by: [Backend, API, BRIL]
+  - concept:
+      name: "Pruebas de accesibilidad"
+      description: "axe-core, Lighthouse para WCAG AA/AAA"
+      used_by: [Frontend, Patient App, Therapist App]
+  - concept:
+      name: "Pruebas de regresión"
+      description: "Playwright, Chromatic para regresiones visuales y funcionales"
+      used_by: [Frontend, Backend]
+  - concept:
+      name: "Quality Gates y cobertura"
+      description: "Cobertura ≥ 90%, 0 vulnerabilidades críticas"
+      used_by: [CI/CD, BQAS]
+  - concept:
+      name: "Estrategia de CI/CD"
+      description: "GitHub Actions, despliegues canary, rollback automático"
+      used_by: [DevOps, BQAS]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "La cobertura de código no debe ser inferior al 90% en módulos críticos."
+    check: "El validador de cobertura verifica que la cobertura sea ≥ 90%."
+  - rule: "No debe haber vulnerabilidades críticas o altas en el código."
+    check: "El escáner de seguridad verifica vulnerabilidades (OWASP ZAP, Bandit, etc.)."
+  - rule: "Las pruebas clínicas deben verificar la lógica de procesos y hipótesis."
+    check: "El validador clínico verifica que los cambios no rompan la lógica clínica."
+  - rule: "Las pruebas de accesibilidad deben pasar WCAG AA."
+    check: "El validador de accesibilidad verifica WCAG AA (axe-core, Lighthouse)."
+  - rule: "Las pruebas de rendimiento deben mostrar que el sistema soporta la carga esperada."
+    check: "Las pruebas de carga (k6) verifican que el sistema soporte > 1000 usuarios concurrentes."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Calidad y Testing"
+  required_for:
+    - "Implementación de pruebas unitarias"
+    - "Configuración de pruebas de integración"
+    - "Diseño de pruebas clínicas y científicas"
+    - "Configuración de CI/CD y Quality Gates"
+  tokens_estimate: 3000
+  embedding_tags:
+    - "testing"
+    - "calidad"
+    - "bqas"
+    - "pruebas-unitarias"
+    - "pruebas-integracion"
+    - "pruebas-clinicas"
+    - "pruebas-seguridad"
+    - "pruebas-rendimiento"
+    - "accesibilidad"
+    - "ci-cd"
+    - "cobertura"
+    - "quality-gates"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura de Calidad"
+    changes:
+      - "Creación inicial del módulo de Testing."
+      - "Definición del archivo bqas-spec.md (BQAS)."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."

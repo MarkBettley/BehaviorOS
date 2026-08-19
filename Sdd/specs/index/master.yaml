@@ -1,0 +1,345 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Behavioral Enterprise Architecture Master Index
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este archivo es el grafo maestro de toda la especificación
+# del BehavioralOS. Define la estructura completa del proyecto,
+# las dependencias entre módulos, la prioridad de desarrollo,
+# y los metadatos generales del sistema. Es el punto de entrada
+# para cualquier agente de IA o desarrollador que necesite
+# entender la arquitectura del proyecto.
+# ============================================================
+
+project:
+  name: BehavioralOS
+  version: 2.2.0
+  codename: "Nintendo de la Psicoterapia"
+  description: >
+    Plataforma de psicoterapia gamificada basada en procesos,
+    con IA on-device, evaluación adaptativa, y experiencias
+    inspiradas en Nintendo para pacientes y Apple para terapeutas.
+  repository: "https://github.com/behavioralos/behavioralos"
+  documentation: "https://docs.behavioralos.com"
+  status: "En Desarrollo"
+
+# ------------------------------------------------------------
+# ESTRUCTURA DE CARPETAS (Módulos del proyecto)
+# ------------------------------------------------------------
+modules:
+  - id: index
+    name: "Índices y Documentación General"
+    description: "Archivos de entrada, perfiles de IA, variables de entorno, README y registro de evolución del proyecto."
+    priority: P0
+    depends_on: []
+    children:
+      - master.yaml
+      - ai-reading-profiles.yaml
+      - behavioral-graph.yaml
+      - environment-variables.md
+      - README.md
+      - EVOLUTION.md
+      - build-roadmap.md
+
+  - id: 000-Core
+    name: "Núcleo Filosófico y Ontológico"
+    description: "Misión, visión, principios, ontología y vocabulario del ecosistema."
+    priority: P0
+    depends_on: []
+    children:
+      - philosophy.md
+      - principles.md
+      - vocabulary.md
+      - ontology.md
+
+  - id: 000-Infrastructure
+    name: "Infraestructura y Selección Tecnológica"
+    description: "Selección de herramientas gratuitas y plan de migración."
+    priority: P0
+    depends_on: []
+    children:
+      - selection.md
+
+  - id: 100-Architecture
+    name: "Arquitectura del Sistema"
+    description: "BEA, BREO, Behavioral Twin y modelo de datos."
+    priority: P0
+    depends_on: [000-Core]
+    children:
+      - system-architecture.md
+      - engines-overview.md
+      - behavioral-twin.md
+      - data-model.md
+
+  - id: 200-Backend
+    name: "Backend y Servicios"
+    description: "APIs, bases de datos, eventos, workflows y motor transaccional."
+    priority: P0
+    depends_on: [100-Architecture]
+    children:
+      - api-graph.md
+      - database-graph.md
+      - events-and-workflows.md
+      - transaction-engine.md
+
+  - id: 300-Frontend
+    name: "Frontend y Experiencia de Usuario"
+    description: "BDS, UI, accesibilidad, Patient App, Therapist App, Brand Studio."
+    priority: P0
+    depends_on: [100-Architecture, 400-AI, 500-Experiencies]
+    children:
+      - design-system.md
+      - ui-graph.md
+      - accessibility.md
+      - patient-app.md
+      - therapist-app.md
+      - ahee-implementation.md
+      - pwa-architecture.md
+      - brand-studio.md
+
+  - id: 400-AI
+    name: "Inteligencia Artificial y Motores Cognitivos"
+    description: "Gemma, TCCN, AAO, guardrails, BKGE, BSC y soporte por IA (AI-007)."
+    priority: P0
+    depends_on: [100-Architecture, 200-Backend]
+    children:
+      - ai-core.md
+      - companion.md
+      - adaptive-orchestrator.md
+      - guardrails.md
+      - rag-knowledge-graph.md
+      - event-sourcing-ai.md
+      - ai-007-support.md  # NUEVO - Soporte y atención por IA (support chat)
+
+  - id: 500-Experiencies
+    name: "Experiencias Terapéuticas y Gamificación"
+    description: "BERL, BML, motor de procesos, mapeo clínico y motor de juegos ideográficos."
+    priority: P0
+    depends_on: [100-Architecture, 400-AI, BPO, BPG]
+    children:
+      - experience-engine.md
+      - mechanics-library.md
+      - process-engine.md
+      - clinical-processes.md
+      - ideographic-game-engine.md  # NUEVO - Motor de juegos ideográficos 3D
+
+  - id: 1300-Libraries  # NUEVO
+    name: "Arquitectura de Bibliotecas (Librerías de Código)"
+    description: "72 bibliotecas organizadas en Foundation, Intelligence y Application, con especificaciones de calidad, plantillas y la implementación de referencia BCL."
+    priority: P0
+    depends_on: [000-Core, 100-Architecture, 200-Backend, 500-Experiencies]
+    children:
+      - libraries.md
+      - strict_spec_schema.md
+      - template_library.md
+      - bcl_complete_implementation.md
+
+  - id: 600-Commerce
+    name: "Motor Comercial, Licencias y Facturación"
+    description: "BCE: modelo de negocio multicapa, suscripciones, pagos, CFDI, marketplace, licencias (LIC), website builder y service landing (SLS)."
+    priority: P0
+    depends_on: [100-Architecture, 200-Backend, 900-Security, BCMS, BCOE, 300-Frontend]
+    children:
+      - business-model.md
+      - licensing-system.md
+      - website-builder.md
+      - service-landing.md
+
+  - id: 700-PracticeOS
+    name: "Sistema Operativo del Consultorio Clínico"
+    description: "BPOS: agenda, EHR, videoterapia, CRM, workflows, automation, relationship engine."
+    priority: P0
+    depends_on: [100-Architecture, 200-Backend, 300-Frontend, 500-Experiencies, 600-Commerce]
+    children:
+      - practice-os.md
+      - automation-studio.md
+      - relationship-engine.md
+
+  - id: 800-Analytics
+    name: "Inteligencia Analítica y Científica"
+    description: "BIP: KPIs, predicciones. BROS: investigación, experimentos."
+    priority: P0
+    depends_on: [100-Architecture, 400-AI, 500-Experiencies, 700-PracticeOS]
+    children:
+      - outcomes-analytics.md
+      - research-platform.md
+
+  - id: 900-Security
+    name: "Seguridad y Gobernanza"
+    description: "BSOS: identidad, permisos, cifrado, auditoría."
+    priority: P0
+    depends_on: [100-Architecture, 200-Backend]
+    children:
+      - security.md
+
+  - id: 1000-Integration
+    name: "Integración y Orquestación en Tiempo Real"
+    description: "BRIL: Event Bus, adaptadores, colas, sincronización."
+    priority: P0
+    depends_on: [200-Backend, 400-AI, 500-Experiencies, 600-Commerce, 700-PracticeOS]
+    children:
+      - bril-spec.md
+
+  - id: 1100-Testing
+    name: "Aseguramiento de Calidad y Testing"
+    description: "BQAS: pruebas unitarias, integración, clínicas, científicas, IA, seguridad."
+    priority: P1
+    depends_on: [1000-Integration]
+    children:
+      - bqas-spec.md
+
+  - id: 1200-Deployment
+    name: "Despliegue, Infraestructura y Operaciones"
+    description: "DevOps: CI/CD, contenedores, monitoreo, backups."
+    priority: P1
+    depends_on: [1100-Testing]
+    children:
+      - devops-spec.md
+
+  - id: BPE
+    name: "Behavioral Process Engine"
+    description: "Motor central de procesos psicológicos. Centraliza TODOS los procesos psicológicos conocidos (18 dominios) y los conecta con ejercicios, juegos, evaluaciones, IA, dashboards e intervenciones."
+    priority: P0
+    depends_on: [000-Core]
+    children:
+      - behavioral-process-engine.md
+
+  - id: BPO
+    name: "Behavioral Process Ontology"
+    description: "Ontología formal de procesos psicológicos. Cada proceso tiene UUID, definiciones múltiples, relaciones, instrumentos, juegos, evidencia científica y versionado semántico."
+    priority: P0
+    depends_on: [BPE, 000-Core]
+    children:
+      - bpo-ontology.md
+
+  - id: BPG
+    name: "Behavioral Process Graph"
+    description: "Grafo dirigido dinámico de procesos psicológicos. Representa el funcionamiento psicológico de individuos, parejas, familias o sistemas usando NetworkX y PostgreSQL."
+    priority: P0
+    depends_on: [BPO, 100-Architecture]
+    children:
+      - bpg-spec.md
+
+  - id: BXE
+    name: "Behavioral Explainability Engine"
+    description: "Motor de explicabilidad y transparencia. Toda decisión de IA debe ser trazable: qué información usó, qué reglas aplicó, qué evidencia respalda, qué alternativas descartó."
+    priority: P0
+    depends_on: [BPG, 400-AI]
+    children:
+      - bxe-spec.md
+
+  - id: BIK
+    name: "Behavioral Intelligence Kernel"
+    description: "Documento único de arquitectura que consolida cómo interactúan TODOS los motores (BPO, BPG, BERL, BCAS, BKC, BTVE, BCCE, BXE, etc.) como un único sistema operativo conductual."
+    priority: P0
+    depends_on: [BPE, BPO, BPG, BXE, 100-Architecture, 200-Backend, 400-AI, 500-Experiencies]
+    children:
+      - bik-architecture.md
+
+  - id: BCMS
+    name: "Behavioral Clinical Management System"
+    description: "Sistema integral de gestión clínica que coordina pacientes, terapeutas, expedientes, sesiones, planes de tratamiento, seguimiento, documentación clínica y supervisión. No es un EMR, es un Behavioral Clinical Operating System."
+    priority: P0
+    depends_on: [100-Architecture, 200-Backend]
+    children:
+      - bcms-detailed.md
+      - bcie-spec.md
+      - bcoe-spec.md
+
+  - id: BSI
+    name: "Behavioral Scheduling Intelligence"
+    description: "Motor inteligente de programación de sesiones. Submotor del BCIE. Sugiere, aprende, se adapta. Considera evolución clínica, disponibilidad, adherencia, riesgo de abandono."
+    priority: P0
+    depends_on: [BCMS]
+    children:
+      - bsi-spec.md
+
+# ------------------------------------------------------------
+# ORDEN DE CONSTRUCCIÓN RECOMENDADO
+# ------------------------------------------------------------
+build_order:
+  # Roadmap detallado de construcción por Fases y Niveles:
+  #   ver index/build-roadmap.md (BRD-001) para la proyección
+  #   accionable de este orden en Fases y Niveles.
+  # ============================================================
+  # NIVEL 1 — MVP FUNCIONAL (implementar AHORA)
+  # ============================================================
+  - level: 1
+    name: "MVP Funcional"
+    description: "Una sola funcionalidad end-to-end: auth + 1 ejercicio terapéutico"
+    modules:
+      - "000-Core"          # Referencia filosófica y ontológica (no se implementa, se consulta)
+      - "000-Infrastructure" # Docker Compose + Supabase + dominio
+      - "900-Security"       # Auth básico: registro, login, JWT, RLS
+      - "200-Backend"        # API REST mínima: auth endpoints + 1 ejercicio
+      - "300-Frontend"       # Una pantalla: login + dashboard con 1 ejercicio
+
+  # ============================================================
+  # NIVEL 2 — VALOR CLÍNICO (cuando Nivel 1 tenga usuarios)
+  # ============================================================
+  - level: 2
+    name: "Valor Clínico"
+    description: "Gestión de pacientes, más ejercicios, companion básico"
+    modules:
+      - "700-PracticeOS"    # CRUD pacientes, asignación, historial
+      - "500-Experiences"   # Ejercicios interactivos con telemetría
+      - "400-AI"            # Companion básico (sin IA generativa primero)
+
+  # ============================================================
+  # NIVEL 3 — INTELIGENCIA (cuando Nivel 2 tenga datos)
+  # ============================================================
+  - level: 3
+    name: "Inteligencia"
+    description: "IA generativa, Behavioral Twin, grafo de procesos"
+    modules:
+      - "100-Architecture"  # Event Sourcing real, Behavioral Twin
+      - "000-Core"          # BPO (ontología de procesos), BPG (grafo de procesos)
+      - "400-AI"            # Gemma/vLLM, RAG, Adaptive Orchestrator completo
+
+  # ============================================================
+  # NIVEL 4 — PLATAFORMA COMPLETA (cuando Nivel 3 esté consolidado)
+  # ============================================================
+  - level: 4
+    name: "Plataforma Completa"
+    description: "Comercio, analytics, librerías, integración, deployment, testing refinado"
+    modules:
+      - "800-Analytics"     # KPIs, reports, dashboards
+      - "600-Commerce"      # Facturación, licencias, marketplace
+      - "1300-Libraries"    # 72 bibliotecas de código
+      - "1000-Integration"  # BRIL, event bus
+      - "1200-Deployment"   # K8s, CI/CD completo
+      - "1100-Testing"      # BQAS completo (testing básico existe desde Nivel 1)
+
+# ------------------------------------------------------------
+# METADATOS DE LA ESPECIFICACIÓN
+# ------------------------------------------------------------
+metadata:
+  total_documents: 83  # 65 .md + 18 .yaml, medidos sobre Sdd/specs/ (2026-08-12)
+  total_carpetas: 16   # Carpetas reales bajo Sdd/specs/ (medido 2026-08-07)
+  implementation_levels: 4
+  current_level: 1
+  current_level_name: "MVP Funcional"
+  current_status: "Por implementar"
+  lenguajes:
+    - "Python (FastAPI)"
+    - "JavaScript/TypeScript (React)"
+    - "YAML (especificación)"
+    - "Markdown (documentación)"
+  frameworks_principales:
+    - "FastAPI"
+    - "React"
+    - "Tailwind CSS"
+    - "Framer Motion"
+    - "Godot 4.3"
+    - "jsPsych"
+    - "Gemma (LLM)"
+    - "MediaPipe"
+    - "Supabase"
+    - "Redis"
+    - "Kubernetes"
+  plataformas_soportadas:
+    - "Web (React)"
+    - "Mobile (React Native)"
+    - "Desktop (Electron)"

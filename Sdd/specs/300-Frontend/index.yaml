@@ -1,0 +1,313 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 300-Frontend
+# Version: 2.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define la experiencia visual, interactiva y de
+# usuario de todo el ecosistema BehavioralOS. Establece el
+# sistema de diseño, la arquitectura de componentes, la
+# accesibilidad, la personalización (AHEE), la navegación,
+# las experiencias diferenciadas (Nintendo para pacientes,
+# Apple para terapeutas), la personalización de la identidad
+# visual de los terapeutas (Brand Studio), la arquitectura
+# PWA (Service Worker, Three.js, IndexedDB) y la preparación
+# para migración nativa con Capacitor.
+#
+# CONTENIDO:
+#   1. design-system.md      → BDS: Tokens, componentes, principios Nintendo/Apple
+#   2. ui-graph.md           → Mapa de pantallas, navegación y flujos
+#   3. accessibility.md      → WCAG, adaptación cognitiva y sensorial
+#   4. patient-app.md        → Experiencia Nintendo (PWA + Three.js)
+#   5. therapist-app.md      → Experiencia Apple (terapeuta)
+#   6. ahee-implementation.md → Integración del motor adaptativo AHEE
+#   7. brand-studio.md       → Personalización de identidad visual
+#   8. pwa-architecture.md   → Arquitectura PWA completa (NUEVO)
+#
+# IMPORTANCIA:
+# El frontend es el punto de contacto directo con los usuarios.
+# La PWA garantiza disponibilidad 24/7 offline-first, Three.js
+# ofrece la experiencia 3D estilo Nintendo, y Capacitor prepara
+# la migración futura a nativo. Este módulo garantiza que la
+# interacción sea coherente, accesible, emocionalmente
+# inteligente y clínicamente efectiva.
+# ============================================================
+
+module:
+  id: 300-Frontend
+  name: "Frontend y Experiencia de Usuario"
+  version: 2.0.0
+  status: Stable
+  owner: "Diseño UX/UI & Frontend Engineering"
+  last_updated: 2026-07-14
+  description: >
+    Define la experiencia visual, interactiva y de usuario del
+    BehavioralOS. Incluye el sistema de diseño (BDS) con principios
+    Nintendo/Apple, la arquitectura de componentes, la accesibilidad,
+    la personalización adaptativa (AHEE), las dos experiencias
+    diferenciadas, la personalización de la identidad visual (Brand Studio),
+    la arquitectura PWA (Service Worker, Three.js, IndexedDB, Background Sync)
+    y la preparación para migración nativa con Capacitor.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La filosofía, principios y vocabulario guían el diseño de la interfaz."
+  - id: 100-Architecture
+    reason: "La arquitectura define las capas y la integración con los motores."
+  - id: 200-Backend
+    reason: "Las APIs y eventos son la fuente de datos para la interfaz."
+  - id: 400-AI
+    reason: "El TCCN y el AAO interactúan directamente con el usuario a través del frontend."
+  - id: 500-Experiencies
+    reason: "Los ejercicios (BERL) se ejecutan en el frontend del paciente."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BDS-001
+    file: design-system.md
+    title: "Behavioral Design System (BDS)"
+    description: >
+      El sistema de diseño unificado del BehavioralOS. Define
+      tokens de diseño, componentes reutilizables, patrones de
+      interacción, microinteracciones, principios Nintendo (charm,
+      juicy feedback, curiosidad, descubrimiento) y Apple (claridad,
+      productividad, deferencia), adaptación dinámica del tema y
+      vocabulario controlado BPO.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Tokens de diseño"
+      - "Biblioteca de componentes"
+      - "Principios Nintendo y Apple"
+      - "Adaptación dinámica del tema"
+      - "Vocabulario controlado BPO"
+
+  - id: UI-001
+    file: ui-graph.md
+    title: "UI Graph – Mapa de Pantallas y Navegación"
+    description: >
+      Define la arquitectura de información y navegación del
+      BehavioralOS. Especifica todas las pantallas, flujos de
+      usuario, transiciones y la organización de la información.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Mapa de pantallas (paciente y terapeuta)"
+      - "Flujos de navegación"
+      - "Arquitectura de información"
+
+  - id: ACC-001
+    file: accessibility.md
+    title: "Accesibilidad y Adaptación Cognitiva"
+    description: >
+      Define las directrices de accesibilidad del BehavioralOS,
+      incluyendo WCAG 2.1 AA, adaptaciones para TEA, TDAH, dislexia,
+      baja visión, adultos mayores, y la integración con AHEE.
+    priority: P1
+    estimated_read_time: 20 min
+    exports:
+      - "Directrices WCAG"
+      - "Adaptaciones cognitivas"
+      - "Estrategias de implementación"
+
+  - id: PAT-001
+    file: patient-app.md
+    title: "Experiencia Nintendo – App del Paciente"
+    description: >
+      Define la experiencia del paciente con principios Nintendo.
+      Incluye PWA con Service Worker offline-first, Three.js para
+      gráficos 3D (Hub Central, Jardín Virtual, personaje/mascota),
+      streaming SSE para chat en tiempo real, IndexedDB para
+      almacenamiento offline, Background Sync y preparación con
+      Capacitor para migración nativa.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Flujos de usuario (paciente)"
+      - "Diseño de pantallas clave"
+      - "Principios de gamificación ética"
+      - "Integración PWA + Three.js"
+      - "Streaming SSE para chat"
+      - "Funcionamiento offline"
+
+  - id: THP-001
+    file: therapist-app.md
+    title: "Experiencia Apple – App del Terapeuta"
+    description: >
+      Define la experiencia del terapeuta con principios Apple.
+      Incluye el dashboard, gestión de pacientes, agenda,
+      videoterapia con HUD, notas clínicas e informes.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Flujos de usuario (terapeuta)"
+      - "Diseño de paneles y dashboards"
+      - "Integración con IA (copiloto)"
+
+  - id: AHEE-001
+    file: ahee-implementation.md
+    title: "Integración del Motor Adaptativo (AHEE)"
+    description: >
+      Define cómo el AHEE se integra con el frontend para
+      personalizar la interfaz en tiempo real según variables
+      de adaptación.
+    priority: P1
+    estimated_read_time: 20 min
+    exports:
+      - "Variables de adaptación"
+      - "Mecanismos de cambio de interfaz"
+      - "API de integración con AHEE"
+
+  - id: BBS-001
+    file: brand-studio.md
+    title: "Behavioral Brand Studio (BBS)"
+    description: >
+      Define la herramienta de personalización de identidad visual
+      para terapeutas y clínicas.
+    priority: P1
+    estimated_read_time: 20 min
+    exports:
+      - "Gestión de identidad visual"
+      - "Personalización de la experiencia del paciente"
+      - "Integración con BWB, BPOS y Patient App"
+
+  - id: PWA-001
+    file: pwa-architecture.md
+    title: "Arquitectura PWA (Progressive Web App)"
+    description: >
+      Define la arquitectura completa de la PWA: Service Worker
+      con Cache-First, IndexedDB para almacenamiento offline,
+      Background Sync para sincronización automática, manifest.json
+      para instalación, Capacitor para migración nativa, Three.js
+      Deep Module (Pantalla3D.js) y pipeline de streaming SSE.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Service Worker y estrategias de caché"
+      - "IndexedDB y Background Sync"
+      - "manifest.json para instalación"
+      - "Capacitor para migración nativa"
+      - "Three.js Deep Module"
+      - "Pipeline de streaming SSE"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Sistema de Diseño (BDS)"
+      description: "Tokens, componentes y patrones visuales"
+      used_by: [Patient App, Therapist App, Admin Dashboard, Brand Studio]
+  - concept:
+      name: "Mapa de Pantallas"
+      description: "Arquitectura de información y navegación"
+      used_by: [Frontend Engineers, QA, UX Designers]
+  - concept:
+      name: "Directrices de Accesibilidad"
+      description: "WCAG y adaptaciones cognitivas"
+      used_by: [Frontend Engineers, QA, AHEE]
+  - concept:
+      name: "Experiencia Paciente (Nintendo)"
+      description: "Flujos, pantallas y gamificación"
+      used_by: [Patient App, BERL, TCCN, AHEE]
+  - concept:
+      name: "Experiencia Terapeuta (Apple)"
+      description: "Dashboards, paneles y herramientas clínicas"
+      used_by: [Therapist App, BPOS, BIP]
+  - concept:
+      name: "Brand Studio"
+      description: "Personalización de identidad visual de terapeutas"
+      used_by: [Therapist App, BWB, BPOS, Patient App]
+  - concept:
+      name: "Arquitectura PWA"
+      description: "Service Worker, IndexedDB, Three.js, Capacitor"
+      used_by: [Patient App, Frontend Engineers, QA]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Todos los componentes deben ser accesibles (WCAG AA)."
+    check: "Las pruebas de accesibilidad (axe-core) verifican cada componente."
+  - rule: "Los textos de la interfaz deben usar el vocabulario controlado (VOC-001)."
+    check: "El linter de UI verifica que no haya palabras prohibidas."
+  - rule: "Las animaciones deben respetar la preferencia de movimiento reducido."
+    check: "Las pruebas de UI verifican la presencia de `prefers-reduced-motion`."
+  - rule: "La interfaz del paciente debe cumplir con los principios de Nintendo."
+    check: "Las pruebas de usuario validan charm, juicy feedback, curiosidad."
+  - rule: "Los colores personalizados en Brand Studio deben cumplir con contraste WCAG AA."
+    check: "El validador verifica que las paletas personalizadas cumplan contraste mínimo."
+  - rule: "La PWA debe funcionar offline verificando el Service Worker."
+    check: "Las pruebas de integración verifican caché de assets y Background Sync."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Frontend y Diseño"
+  required_for:
+    - "Implementación de interfaces"
+    - "Diseño de nuevos componentes"
+    - "Auditoría de accesibilidad"
+    - "Personalización de la experiencia (AHEE)"
+    - "Diseño de herramientas de branding"
+    - "Arquitectura PWA y Three.js"
+  tokens_estimate: 5200
+  embedding_tags:
+    - "frontend"
+    - "ui"
+    - "ux"
+    - "design-system"
+    - "nintendo"
+    - "apple"
+    - "accesibilidad"
+    - "ahee"
+    - "gamificación"
+    - "componentes"
+    - "react"
+    - "tailwind"
+    - "framer-motion"
+    - "brand-studio"
+    - "personalización"
+    - "pwa"
+    - "threejs"
+    - "service-worker"
+    - "indexeddb"
+    - "capacitor"
+    - "offline-first"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Diseño UX/UI & Frontend Engineering"
+    changes:
+      - "Creación inicial del módulo de Frontend."
+      - "Definición de los seis documentos principales: BDS, UI Graph, Accesibilidad, Patient App, Therapist App y AHEE Integration."
+  - version: 1.1.0
+    date: 2026-07-13
+    author: "Diseño UX/UI & Frontend Engineering"
+    changes:
+      - "Añadido el documento brand-studio.md."
+      - "Actualizadas las exportaciones con Brand Studio."
+      - "Añadida nueva regla de validación para contraste de colores personalizados."
+      - "Actualizada la estimación de tokens."
+  - version: 2.0.0
+    date: 2026-07-14
+    author: "Diseño UX/UI & Frontend Engineering"
+    changes:
+      - "Añadido pwa-architecture.md: Arquitectura PWA completa."
+      - "Actualizado patient-app.md a v2.0.0: PWA, Three.js, SSE, IndexedDB, Capacitor."
+      - "Actualizado design-system.md a v2.0.0: Principios Nintendo/Apple, vocabulario BPO, adaptación dinámica."
+      - "Nuevas dependencias: pwa-architecture.md."
+      - "Nuevas exportaciones: Arquitectura PWA."
+      - "Nuevas validaciones: funcionamiento offline, Service Worker."
+      - "Actualizada estimación de tokens a 5200."

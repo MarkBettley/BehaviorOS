@@ -1,0 +1,168 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 800-Analytics
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define el Behavioral Intelligence Platform (BIP)
+# y el Behavioral Research OS (BROS), que juntos constituyen el
+# sistema de analítica, investigación y generación de conocimiento
+# del BehavioralOS. Proporciona dashboards de KPIs clínicos,
+# operativos y comerciales, modelos predictivos (riesgo de abandono,
+# recaída, etc.), y una plataforma de investigación para validar
+# intervenciones y generar evidencia científica.
+#
+# CONTENIDO:
+#   1. outcomes-analytics.md   → BIP: KPIs, dashboards, predicciones
+#   2. research-platform.md   → BROS: investigación, experimentos, simulación
+#
+# IMPORTANCIA:
+# La analítica es el termómetro del ecosistema. Permite a los terapeutas
+# medir su efectividad, a los administradores optimizar la plataforma,
+# y a los investigadores generar nuevo conocimiento. El BIP y el BROS
+# convierten los datos en inteligencia y ciencia.
+# ============================================================
+
+module:
+  id: 800-Analytics
+  name: "Inteligencia Analítica y Científica"
+  version: 1.0.0
+  status: Stable
+  implementation_level: 4
+  implementation_status: "Frozen — esperar a Nivel 3"
+  owner: "Ciencia de Datos & Investigación"
+  last_updated: 2026-07-01
+  description: >
+    Define el Behavioral Intelligence Platform (BIP) y el Behavioral
+    Research OS (BROS). Incluye dashboards de KPIs, modelos predictivos,
+    análisis de efectividad clínica, y una plataforma de investigación
+    para validar intervenciones y generar evidencia científica.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología y los principios guían la interpretación de datos."
+  - id: 100-Architecture
+    reason: "La arquitectura define la integración de analítica con el resto del sistema."
+  - id: 200-Backend
+    reason: "Las APIs, bases de datos y eventos soportan el análisis de datos."
+  - id: 300-Frontend
+    reason: "Los dashboards se visualizan en la Therapist App y Admin Dashboard."
+  - id: 400-AI
+    reason: "El AAO y el BKGE proporcionan datos para el análisis y predicción."
+  - id: 500-Experiencies
+    reason: "La telemetría de ejercicios alimenta el análisis de efectividad."
+  - id: 600-Commerce
+    reason: "Los datos comerciales alimentan los KPIs de negocio."
+  - id: 700-PracticeOS
+    reason: "Los datos clínicos y operativos alimentan los dashboards."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BIP-001
+    file: outcomes-analytics.md
+    title: "Behavioral Intelligence Platform (BIP)"
+    description: >
+      Define la plataforma de inteligencia analítica del BehavioralOS:
+      dashboards de KPIs clínicos, operativos y comerciales para
+      terapeutas y administradores; modelos predictivos (riesgo de
+      abandono, recaída, adherencia); análisis de efectividad de
+      intervenciones; y generación de reportes personalizados.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Dashboards de KPIs"
+      - "Modelos predictivos"
+      - "Análisis de efectividad"
+      - "Reportes personalizados"
+
+  - id: BROS-001
+    file: research-platform.md
+    title: "Behavioral Research OS (BROS)"
+    description: >
+      Define la plataforma de investigación del BehavioralOS:
+      diseño y ejecución de experimentos (A/B, N-of-1, etc.),
+      simulación con Behavioral Twins sintéticos, validación de
+      intervenciones, análisis de resultados, y generación de
+      evidencia científica para mejorar la plataforma y contribuir
+      a la ciencia del comportamiento.
+    priority: P1
+    estimated_read_time: 25 min
+    exports:
+      - "Diseño de experimentos"
+      - "Simulación con Behavioral Twins sintéticos"
+      - "Validación de intervenciones"
+      - "Generación de evidencia científica"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Dashboards de KPIs"
+      description: "Visualización de métricas clínicas, operativas y comerciales"
+      used_by: [Therapist App, Admin Dashboard]
+  - concept:
+      name: "Modelos Predictivos"
+      description: "Predicción de riesgo de abandono, recaída, adherencia"
+      used_by: [Therapist App, AAO, BPOS]
+  - concept:
+      name: "Análisis de Efectividad"
+      description: "Evaluación de la efectividad de intervenciones y ejercicios"
+      used_by: [BSC, BERL, BROS]
+  - concept:
+      name: "Investigación y Experimentación"
+      description: "Plataforma para diseñar y ejecutar experimentos clínicos"
+      used_by: [Investigadores, ASC, BSC]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Los dashboards deben actualizarse en tiempo real (o con latencia < 5 minutos)."
+    check: "Las pruebas de integración verifican la latencia de actualización de datos."
+  - rule: "Los modelos predictivos deben tener un nivel de precisión ≥ 70% (AUC)."
+    check: "Las pruebas de validación de modelos verifican la precisión."
+  - rule: "Los experimentos deben cumplir con los estándares éticos y de consentimiento."
+    check: "El validador verifica que cada experimento tenga consentimiento y aprobación del ASC."
+  - rule: "Los datos de investigación deben estar anonimizados antes del análisis."
+    check: "El validador verifica la anonimización de datos para investigación."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Analítica e Investigación"
+  required_for:
+    - "Implementación de dashboards y KPIs"
+    - "Configuración de modelos predictivos"
+    - "Diseño de experimentos clínicos"
+    - "Análisis de efectividad"
+  tokens_estimate: 3500
+  embedding_tags:
+    - "analítica"
+    - "kpis"
+    - "dashboards"
+    - "predicción"
+    - "efectividad"
+    - "investigación"
+    - "experimentos"
+    - "bip"
+    - "bros"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura de Analítica"
+    changes:
+      - "Creación inicial del módulo de Analítica."
+      - "Definición de dos documentos principales: BIP (outcomes-analytics.md) y BROS (research-platform.md)."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."

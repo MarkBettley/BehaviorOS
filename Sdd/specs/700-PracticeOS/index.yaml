@@ -1,0 +1,394 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 700-PracticeOS
+# Version: 2.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define el Behavioral Clinical Management System
+# (BCMS), el Behavioral Clinical Operating System. Gestiona
+# pacientes, terapeutas, expedientes, sesiones, planes de
+# tratamiento, seguimiento, documentación clínica, supervisión
+# y operación diaria del consultorio o clínica.
+#
+# El BCMS no es un simple EMR. Es el núcleo operativo de toda
+# la práctica clínica. El psicólogo nunca debería perder tiempo
+# administrando información.
+#
+# CONTENIDO:
+#   1. practice-os.md         → BCMS: ciclo clínico completo (v2.0.0)
+#   2. bcms-detailed.md       → Especificación detallada de los 20 submódulos
+#   3. bcie-spec.md           → BCIE: inteligencia de carga clínica
+#   4. bcoe-spec.md           → BCOE: motor de operaciones del negocio
+#   5. bsi-spec.md            → BSI: programación inteligente de citas
+#   6. automation-studio.md   → BAS: editor visual de workflows (drag & drop)
+#   7. relationship-engine.md → BRE: motor de relaciones con pacientes (CRM avanzado)
+#
+# IMPORTANCIA:
+# El BCMS es el corazón de la práctica clínica. Sin un sistema
+# operativo clínico sólido, la práctica se vuelve ineficiente y
+# propensa a errores. El BCMS administra todo el ciclo de vida
+# del paciente: desde la preentrevista hasta el post-alta.
+# Los submódulos BCIE, BSI y BCOE potencian la inteligencia,
+# la programación y las operaciones respectivamente.
+# ============================================================
+
+module:
+  id: 700-PracticeOS
+  name: "Behavioral Clinical Management System (BCMS)"
+  version: 2.0.0
+  status: Stable
+  implementation_level: 2
+  implementation_status: "Frozen — esperar a Nivel 1"
+  owner: "Práctica Clínica & Arquitectura de Software"
+  last_updated: 2026-07-14
+  description: >
+    Define el Behavioral Clinical Management System (BCMS),
+    el Behavioral Clinical Operating System que gestiona el
+    ciclo clínico completo: pacientes, terapeutas, expedientes,
+    sesiones, planes de tratamiento, seguimiento, documentación
+    clínica, supervisión y operación diaria. Incluye submódulos
+    de inteligencia de carga (BCIE), programación inteligente
+    (BSI) y operaciones del negocio (BCOE).
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología y los principios guían la práctica clínica."
+  - id: 100-Architecture
+    reason: "La arquitectura define la integración del BCMS con el resto del sistema."
+  - id: 200-Backend
+    reason: "Las APIs, bases de datos y eventos soportan la operación clínica."
+  - id: 300-Frontend
+    reason: "El terapeuta interactúa con el BCMS a través de la Therapist App."
+  - id: 400-AI
+    reason: "La IA (TCCN, AAO) se integra con la agenda, videoterapia y notas."
+  - id: 500-Experiencies
+    reason: "Los ejercicios (BERL) se asignan y monitorean desde el BCMS."
+  - id: 600-Commerce
+    reason: "El BCE se integra para facturación y gestión de suscripciones."
+  - id: 900-Security
+    reason: "La seguridad y los consentimientos protegen los datos clínicos."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BCMS-001
+    file: practice-os.md
+    title: "Behavioral Clinical Management System (BCMS)"
+    description: >
+      Define el Behavioral Clinical Operating System: ciclo clínico
+      completo (Preentrevista → Evaluación → Formulación → Plan →
+      Sesiones → Seguimiento → Alta → Post-alta), 20 submódulos
+      clínicos, agenda inteligente con BSI, expediente basado en
+      objetos clínicos, videoterapia con HUD y copiloto IA, notas
+      clínicas SOAP/DAP/BIRP generadas por IA, CRM, supervisión,
+      y documentación clínica automática. Referencia a documentos
+      detallados: bcms-detailed.md, bcie-spec.md, bcoe-spec.md,
+      bsi-spec.md.
+    priority: P0
+    estimated_read_time: 40 min
+    exports:
+      - "20 submódulos clínicos"
+      - "Patient Registry"
+      - "Therapist Workspace"
+      - "Appointment Manager"
+      - "Clinical Intake Manager"
+      - "Assessment Manager"
+      - "Clinical Record Manager"
+      - "Case Formulation Manager"
+      - "Treatment Plan Manager"
+      - "Session Manager"
+      - "Homework Manager"
+      - "Progress Monitoring Manager"
+      - "Clinical Timeline"
+      - "Clinical Documentation Engine"
+      - "Supervisor Workspace"
+      - "Clinical Collaboration Layer"
+      - "Notification Center"
+      - "Automation Engine"
+      - "Clinical Search Engine"
+      - "Archive Manager"
+      - "Audit Manager"
+
+  - id: BCMS-002
+    file: bcms-detailed.md
+    title: "BCMS — Especificación Detallada"
+    description: >
+      Especificación completa de los 20 submódulos del BCMS
+      con arquitectura detallada, integraciones, datos que
+      maneja, y ciclo clínico completo. Incluye diferenciación
+      de submódulos (BCMS vs BCIE vs BCOE vs BSI), notas de
+      implementación (Event Sourcing, RBAC, Zero Trust,
+      Offline-First, Multi-tenancy) y métricas de éxito.
+    priority: P0
+    estimated_read_time: 60 min
+    exports:
+      - "20 submódulos clínicos detallados"
+      - "Ciclo clínico completo"
+      - "Integración con el ecosistema"
+      - "Notas de implementación"
+      - "Métricas de éxito"
+
+  - id: BCIE-001
+    file: bcie-spec.md
+    title: "Behavioral Caseload Intelligence Engine (BCIE)"
+    description: >
+      Motor de inteligencia para la gestión de carga clínica.
+      Analiza continuamente el estado de todos los pacientes,
+      prioriza el trabajo del terapeuta, identifica riesgos
+      operativos y clínicos, optimiza el seguimiento y ayuda
+      a distribuir eficientemente los recursos. Incluye 15
+      submotores: Caseload Analyzer, Priority Engine, Risk
+      Stratification, Dropout Prediction, Engagement Monitor,
+      Clinical Workload Optimizer, Therapist Capacity Engine,
+      Follow-up Intelligence, Waiting List Optimizer, Session
+      Frequency Optimizer, Resource Allocation Engine, Clinical
+      Heatmap, Productivity Analytics, Burnout Prevention,
+      Caseload Dashboard. Exporta BCLI y BCoI.
+    priority: P0
+    estimated_read_time: 45 min
+    exports:
+      - "15 submotores de inteligencia de carga"
+      - "BCLI (Behavioral Clinical Load Index)"
+      - "BCoI (Behavioral Continuity Index)"
+      - "Caseload Dashboard"
+
+  - id: BCOE-001
+    file: bcoe-spec.md
+    title: "Behavioral Clinic Operations Engine (BCOE)"
+    description: >
+      Motor de operaciones del negocio que administra todos los
+      procesos administrativos, operativos y comerciales,
+      manteniendo completamente separada la gestión operativa
+      del razonamiento clínico. Incluye 18 submotores: Clinic
+      Administration, Resource Management, Staff Management,
+      Room & Equipment, Financial Operations, Billing &
+      Subscription, Payment Intelligence, Operational Workflow,
+      Patient Journey, Document Management, Communication
+      Center, Notification Center (operativo), Inventory,
+      Operational Analytics, Multi-Branch, Compliance,
+      Automation Engine (operativo), Organization Settings.
+    priority: P0
+    estimated_read_time: 50 min
+    exports:
+      - "18 submotores de operaciones del negocio"
+      - "Separación Clinical Core / Operations Core"
+      - "Dashboard operativo"
+
+  - id: BSI-001
+    file: bsi-spec.md
+    title: "Behavioral Scheduling Intelligence (BSI)"
+    description: >
+      Submotor del BCIE encargado de optimizar la programación,
+      continuidad y coordinación inteligente de las sesiones
+      clínicas. No agenda automáticamente; sugiere y aprende.
+      Incluye 16 submotores: Availability Engine, Preference
+      Learning Engine, Continuity Optimizer, Session Frequency
+      Engine, Smart Recommendation Engine, Cancellation
+      Predictor, Rescheduling Engine, Waiting List Optimizer,
+      Calendar Synchronization Layer, Reminder Intelligence,
+      Attendance Prediction Engine, Scheduling Conflict
+      Resolver, Multiuser Coordination Engine, Behavioral
+      Routine Analyzer, Treatment Milestone Scheduler,
+      Scheduling Analytics.
+    priority: P0
+    estimated_read_time: 50 min
+    exports:
+      - "16 submotores de programación inteligente"
+      - "Smart Recommendation Engine"
+      - "Dashboard del Paciente"
+      - "Dashboard del Terapeuta"
+
+  - id: BAS-001
+    file: automation-studio.md
+    title: "Behavioral Automation Studio (BAS)"
+    description: >
+      Define una herramienta visual de automatización de workflows
+      que permite a los terapeutas y administradores crear flujos
+      de trabajo automatizados sin necesidad de programación.
+      Incluye un editor drag & drop, catálogo de disparadores
+      y acciones, integración con BCMS, BCE, BIP y TCCN, y
+      plantillas predefinidas para casos de uso comunes.
+    priority: P1
+    estimated_read_time: 25 min
+    exports:
+      - "Editor visual de workflows (drag & drop)"
+      - "Catálogo de disparadores y acciones"
+      - "Integración con BCMS, BCE, BIP y TCCN"
+      - "Plantillas predefinidas"
+      - "Gestión de workflows (activación, desactivación, historial)"
+
+  - id: BRE-001
+    file: relationship-engine.md
+    title: "Behavioral Relationship Engine (BRE)"
+    description: >
+      Define un motor avanzado de gestión de relaciones con
+      pacientes (CRM). Permite segmentar pacientes por perfil
+      clínico, comportamiento y estado; gestionar interacciones;
+      automatizar recordatorios personalizados; y analizar la
+      evolución de la relación terapéutica. Se integra con BCMS,
+      TCCN y Behavioral Twin.
+    priority: P1
+    estimated_read_time: 20 min
+    exports:
+      - "Segmentación de pacientes"
+      - "Gestión de interacciones"
+      - "Automatización de recordatorios"
+      - "Análisis de relación terapéutica"
+      - "Integración con Behavioral Twin y TCCN"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "BCMS (Behavioral Clinical Management System)"
+      description: "Behavioral Clinical Operating System: ciclo clínico completo con 20 submódulos"
+      used_by: [Therapist App, Patient App, BCIE, BCOE, BSI, BIMS, BARS, BRIL]
+  - concept:
+      name: "BCIE (Behavioral Caseload Intelligence Engine)"
+      description: "Inteligencia de carga clínica: priorización, riesgo, continuidad, burnout"
+      used_by: [BCMS, Therapist Workspace, Patient App, BCOE, BSI, BARS, BCGS]
+  - concept:
+      name: "BCOE (Behavioral Clinic Operations Engine)"
+      description: "Operaciones del negocio: recursos, finanzas, personal, cumplimiento"
+      used_by: [BCMS, BCIE, Therapist App, Admin Dashboard, BARS, BCGS]
+  - concept:
+      name: "BSI (Behavioral Scheduling Intelligence)"
+      description: "Programación inteligente de citas: continuidad, preferencias, predicción"
+      used_by: [BCMS, BCIE, BCOE, Therapist App, Patient App, BARS, BRIL]
+  - concept:
+      name: "Agenda Inteligente"
+      description: "Gestión de citas con integración con Google Calendar/Outlook y BSI"
+      used_by: [Therapist App, Patient App, Notificaciones, BSI]
+  - concept:
+      name: "Expediente Clínico Electrónico"
+      description: "Registro basado en objetos clínicos navegables (no PDFs estáticos)"
+      used_by: [Therapist App, BCMS, BIP, Clinical Timeline]
+  - concept:
+      name: "Videoterapia"
+      description: "Plataforma de videollamada con HUD clínico y copiloto IA"
+      used_by: [Therapist App, Patient App, TCCN, AAO]
+  - concept:
+      name: "Notas Clínicas"
+      description: "SOAP, DAP, BIRP y orientadas a procesos — generadas por IA"
+      used_by: [Therapist App, EHR, BCMS, BCGS]
+  - concept:
+      name: "Automatización de Workflows (BAS)"
+      description: "Editor visual de workflows sin código"
+      used_by: [Therapist App, Admin Dashboard, BCMS]
+  - concept:
+      name: "Gestión de Relaciones (BRE)"
+      description: "CRM avanzado con segmentación y análisis de relación terapéutica"
+      used_by: [Therapist App, BCMS, TCCN]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "El BCMS debe administrar el ciclo clínico completo sin pérdida de datos entre etapas."
+    check: "Las pruebas de integración verifican que cada paso alimente al siguiente."
+  - rule: "Las notas clínicas deben cumplir con el estándar SOAP, DAP o BIRP."
+    check: "El validador verifica la estructura de las notas."
+  - rule: "La videoterapia debe encriptar el audio y video en tránsito."
+    check: "Las pruebas de seguridad verifican el cifrado de la videollamada."
+  - rule: "El BCIE debe priorizar pacientes diariamente sin intervención manual."
+    check: "Las pruebas verifican la actualización diaria del Priority Engine."
+  - rule: "El BSI nunca debe agendar automáticamente; solo debe sugerir."
+    check: "Las pruebas verifican que BSI solo genera recomendaciones, no acciones."
+  - rule: "El BCOE no debe acceder al contenido clínico (formulaciones, procesos, hipótesis)."
+    check: "Las pruebas de aislamiento verifican que BCOE solo acceda a datos operativos."
+  - rule: "La separación clínico-operativo debe mantenerse en todas las capas."
+    check: "El validador verifica que no haya dependencias circulares entre Clinical Core y Operations Core."
+  - rule: "El Automation Studio debe validar que los workflows no creen bucles infinitos."
+    check: "El validador analiza los workflows en busca de dependencias circulares."
+  - rule: "El Relationship Engine debe respetar los consentimientos de comunicación del paciente."
+    check: "Las pruebas de integración verifican que los mensajes solo se envíen con consentimiento."
+  - rule: "El BCIE debe detectar abandono con > 80% de precisión."
+    check: "Las pruebas de validación clínica verifican la precisión del Dropout Prediction Engine."
+  - rule: "El BSI debe responder con recomendaciones en < 300ms."
+    check: "Las pruebas de rendimiento verifican el tiempo de respuesta del Smart Recommendation Engine."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Práctica Clínica y Operaciones"
+  required_for:
+    - "Implementación del BCMS y sus 20 submódulos"
+    - "Configuración de BCIE (inteligencia de carga clínica)"
+    - "Configuración de BSI (programación inteligente)"
+    - "Configuración de BCOE (operaciones del negocio)"
+    - "Configuración de videoterapia y HUD"
+    - "Diseño de notas clínicas y documentación"
+    - "Automatización de flujos de trabajo clínicos"
+    - "Separación clínico-operativo"
+  tokens_estimate: 8000
+  embedding_tags:
+    - "bcms"
+    - "practica-clinica"
+    - "ehr"
+    - "expediente"
+    - "videoterapia"
+    - "hud"
+    - "notas-clinicas"
+    - "soap"
+    - "dap"
+    - "birp"
+    - "bcie"
+    - "inteligencia-carga"
+    - "priorizacion"
+    - "abandono"
+    - "bcoe"
+    - "operaciones"
+    - "facturacion"
+    - "recursos"
+    - "bsi"
+    - "programacion"
+    - "citas"
+    - "continuidad"
+    - "automation-studio"
+    - "relationship-engine"
+    - "automatizacion"
+    - "segmentacion"
+    - "ciclo-clinico"
+    - "formulacion"
+    - "plan-tratamiento"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura de Práctica Clínica"
+    changes:
+      - "Creación inicial del módulo de PracticeOS."
+      - "Definición del archivo practice-os.md (BPOS)."
+  - version: 1.1.0
+    date: 2026-07-13
+    author: "Arquitectura de Práctica Clínica"
+    changes:
+      - "Añadido el documento automation-studio.md."
+      - "Añadido el documento relationship-engine.md."
+      - "Actualizadas las exportaciones con BAS y BRE."
+      - "Añadidas nuevas reglas de validación."
+      - "Actualizada la estimación de tokens."
+  - version: 2.0.0
+    date: 2026-07-14
+    author: "Arquitectura de Práctica Clínica"
+    changes:
+      - "Transformación de BPOS a BCMS (Behavioral Clinical Management System)."
+      - "Reescritura completa de practice-os.md: ciclo clínico completo, 20 submódulos, filosofía BCOS."
+      - "Añadido bcms-detailed.md: especificación detallada de los 20 submódulos."
+      - "Añadido bcie-spec.md: Behavioral Caseload Intelligence Engine (15 submotores + BCLI + BCoI)."
+      - "Añadido bcoe-spec.md: Behavioral Clinic Operations Engine (18 submotores)."
+      - "Añadido bsi-spec.md: Behavioral Scheduling Intelligence (16 submotores)."
+      - "Actualizadas las exportaciones con BCMS, BCIE, BCOE, BSI."
+      - "Añadidas nuevas reglas de validación (ciclo clínico, separación clínico-operativo, BCIE, BSI, BCOE)."
+      - "Actualizada la estimación de tokens de 4500 a 8000."
+      - "Filosofía: 'El psicólogo nunca debería perder tiempo administrando información'."

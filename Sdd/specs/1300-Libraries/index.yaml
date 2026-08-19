@@ -1,0 +1,199 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 1300-Libraries
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define la arquitectura de bibliotecas de código
+# del BehavioralOS, organizadas en tres niveles:
+#   - Foundation Libraries (33): modelos base, matemáticas, grafos, modelado e infraestructura.
+#   - Intelligence Libraries (25): aprendizaje, simulación, predicción, explicabilidad y conocimiento.
+#   - Application Libraries (14): intervención, cognitivas y medición.
+#
+# Además, proporciona las especificaciones de calidad (strict_spec_schema),
+# la plantilla para generar nuevas bibliotecas (TEMPLATE_LIBRARY),
+# la lista completa de bibliotecas con sus dependencias y casos de prueba,
+# y la implementación de referencia de la Behavioral Core Library (BCL).
+# ============================================================
+
+module:
+  id: 1300-Libraries
+  name: "Arquitectura de Bibliotecas (Librerías de Código)"
+  version: 1.0.0
+  status: Stable
+  implementation_level: 4
+  implementation_status: "Frozen — esperar a Nivel 3"
+  owner: "Arquitectura de Software & Ciencia de Datos"
+  last_updated: 2026-07-13
+  description: >
+    Define la estructura, calidad y contenido de todas las bibliotecas
+    de código del BehavioralOS, organizadas en Foundation, Intelligence
+    y Application. Incluye la especificación de calidad (strict_spec_schema),
+    la plantilla de generación (TEMPLATE_LIBRARY), el catálogo completo de
+    72 bibliotecas y la implementación de referencia (BCL).
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología, los principios y el vocabulario guían el diseño de las bibliotecas."
+  - id: 100-Architecture
+    reason: "La arquitectura define cómo las bibliotecas se integran en el ecosistema."
+  - id: 200-Backend
+    reason: "Las bibliotecas se implementan en el backend y se exponen a través de APIs."
+  - id: 500-Experiencies
+    reason: "Las bibliotecas clínicas (ACT, FAP, etc.) se utilizan en los ejercicios y la gamificación."
+  - id: 000-Core
+    reason: "Los principios Torticode (TCD-001) son vinculantes para la generación de código de todas las bibliotecas."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: LIB-001
+    file: libraries.md
+    title: "Catálogo de Bibliotecas (72 librerías)"
+    description: >
+      Lista completa de las 72 bibliotecas del BehavioralOS, organizadas
+      por niveles (Foundation, Intelligence, Application) y categorías.
+      Cada biblioteca incluye: nombre, descripción, dependencias, exports
+      y casos de prueba. Es el punto de partida para la generación de código.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Catálogo de bibliotecas por nivel"
+      - "Dependencias entre bibliotecas"
+      - "Casos de prueba por biblioteca"
+
+  - id: LIB-002
+    file: strict_spec_schema.md
+    title: "Esquema de Calidad Estricto (strict_spec_schema)"
+    description: >
+      Define las reglas obligatorias para la generación de código de
+      todas las bibliotecas: versiones de Python, estilo (PEP 8),
+      typing estricto (mypy), logging estructurado (structlog),
+      docstrings (Google Style), estructura de carpetas, requisitos
+      de archivos (pyproject.toml, requirements.txt, README.md),
+      reglas de código (modelos Pydantic, funciones, utilidades,
+      excepciones), reglas de pruebas (100% cobertura) y gates de
+      calidad (mypy, pytest, black, isort).
+    priority: P0
+    estimated_read_time: 20 min
+    exports:
+      - "Reglas de calidad de código"
+      - "Estructura de carpetas"
+      - "Requisitos de archivos"
+      - "Plantillas de funciones y tests"
+      - "Quality Gates"
+
+  - id: LIB-003
+    file: template_library.md
+    title: "Plantilla para Generación de Bibliotecas"
+    description: >
+      Proporciona instrucciones paso a paso para generar cualquier
+      biblioteca de BehavioralOS siguiendo el estándar de BCL.
+      Incluye: estructura de carpetas, configuración (pyproject.toml),
+      implementación de models.py, functions.py, utils.py, exceptions.py,
+      __init__.py, tests (con 100% de cobertura), conftest.py, README.md,
+      y un checklist de validación. Además, da ejemplos de adaptación
+      para bibliotecas específicas (ACT, Ontología).
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Pasos para generar una biblioteca"
+      - "Plantillas de archivos"
+      - "Checklist de validación"
+      - "Ejemplos de adaptación"
+
+  - id: LIB-004
+    file: bcl_complete_implementation.md
+    title: "Implementación Completa de la Behavioral Core Library (BCL)"
+    description: >
+      Ejemplo canónico de implementación de una biblioteca de Foundation.
+      Incluye la estructura completa de archivos, pyproject.toml,
+      requirements.txt, el código fuente (models.py, functions.py,
+      utils.py, exceptions.py, __init__.py) y las pruebas unitarias
+      (conftest.py, test_models.py, test_functions.py, test_utils.py)
+      con 100% de cobertura. Sirve como referencia de estilo y calidad
+      para todas las demás bibliotecas.
+    priority: P0
+    estimated_read_time: 35 min
+    exports:
+      - "Estructura de archivos de BCL"
+      - "Código fuente completo"
+      - "Pruebas unitarias"
+      - "Resumen de cobertura"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Catálogo de Bibliotecas"
+      description: "Lista de 72 bibliotecas con dependencias y casos de prueba"
+      used_by: [Backend, AI, Experiencies, PracticeOS, Analytics]
+  - concept:
+      name: "Esquema de Calidad"
+      description: "Reglas estrictas de calidad para código (mypy, pytest, black, etc.)"
+      used_by: [BQAS, CI/CD, Desarrollo de bibliotecas]
+  - concept:
+      name: "Plantilla de Generación"
+      description: "Instrucciones paso a paso para crear nuevas bibliotecas"
+      used_by: [Desarrolladores, Agentes de IA, Equipos de I+D]
+  - concept:
+      name: "Implementación de Referencia (BCL)"
+      description: "Código completo y pruebas de la Behavioral Core Library"
+      used_by: [Desarrolladores, Agentes de IA, Backend]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Todas las bibliotecas deben cumplir con strict_spec_schema."
+    check: "El validador verifica que cada biblioteca tenga mypy --strict, pytest con 100% de cobertura, black, isort."
+  - rule: "Cada biblioteca debe tener su propia estructura de carpetas y archivos obligatorios."
+    check: "El validador verifica la existencia de pyproject.toml, requirements.txt, README.md, src/, tests/, docs/."
+  - rule: "Las bibliotecas deben seguir el orden de dependencias (Foundation → Intelligence → Application)."
+    check: "El validador verifica que las dependencias entre bibliotecas respeten el orden de niveles."
+  - rule: "La BCL debe servir como referencia de estilo para todas las demás bibliotecas."
+    check: "El validador compara la estructura y calidad de otras bibliotecas contra BCL."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Desarrollo de Bibliotecas"
+  required_for:
+    - "Generación de código de bibliotecas"
+    - "Implementación de modelos y funciones"
+    - "Escritura de pruebas unitarias"
+    - "Configuración de calidad y estilo"
+  tokens_estimate: 4000
+  embedding_tags:
+    - "bibliotecas"
+    - "librerías"
+    - "código"
+    - "calidad"
+    - "mypy"
+    - "pytest"
+    - "pydantic"
+    - "bcl"
+    - "foundation"
+    - "intelligence"
+    - "application"
+    - "plantilla"
+    - "esquema"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-13
+    author: "Arquitectura de Bibliotecas"
+    changes:
+      - "Creación inicial del módulo 1300-Libraries."
+      - "Definición de los cuatro documentos principales: libraries.md, strict_spec_schema.md, template_library.md, bcl_complete_implementation.md."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."

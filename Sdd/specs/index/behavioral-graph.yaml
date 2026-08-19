@@ -1,0 +1,626 @@
+# ============================================================
+# BehavioralOS - Behavioral Specification Graph (BSG)
+# Version: 1.0.0
+# ============================================================
+# PROPÓSITO:
+# Este archivo define el grafo de dependencias entre todos los
+# documentos de especificación. Permite a los agentes de IA
+# navegar la arquitectura del proyecto y entender qué documentos
+# dependen de cuáles.
+# ============================================================
+
+nodes:
+  - id: index
+    type: "module"
+    name: "Índices y Documentación General"
+    depends_on: []
+    children:
+      - id: IDX-001
+        file: master.yaml
+        name: "Grafo Maestro del Proyecto"
+      - id: IDX-002
+        file: ai-reading-profiles.yaml
+        name: "Perfiles de Lectura para Agentes de IA"
+      - id: IDX-003
+        file: behavioral-graph.yaml
+        name: "Grafo de Dependencias entre Documentos"
+      - id: IDX-004
+        file: environment-variables.md
+        name: "Variables de Entorno del BehavioralOS"
+      - id: IDX-005
+        file: README.md
+        name: "Guía de Inicio Rápido y Documentación General"
+      - id: IDX-006
+        file: EVOLUTION.md
+        name: "Evolución, Changelog y Registro de RFCs"
+      - id: IDX-007
+        file: build-roadmap.md
+        name: "Roadmap de Construcción por Fases y Niveles"
+
+  - id: 000-Core
+    type: "module"
+    name: "Núcleo Filosófico y Ontológico"
+    depends_on: []
+    children:
+      - id: PHI-001
+        file: philosophy.md
+        name: "Filosofía del Producto"
+      - id: PRN-001
+        file: principles.md
+        name: "Principios y Reglas de Oro"
+      - id: VOC-001
+        file: vocabulary.md
+        name: "Lenguaje del Ecosistema"
+      - id: ONT-001
+        file: ontology.md
+        name: "Ontología Formal del Comportamiento"
+
+  - id: 000-Infrastructure
+    type: "module"
+    name: "Infraestructura y Selección Tecnológica"
+    depends_on: []
+    children:
+      - id: INF-001
+        file: selection.md
+        name: "Selección de Infraestructura y Motores"
+
+  - id: 100-Architecture
+    type: "module"
+    name: "Arquitectura del Sistema"
+    depends_on: [000-Core]
+    children:
+      - id: BEA-001
+        file: system-architecture.md
+        name: "Arquitectura Empresarial (BEA)"
+      - id: BREO-001
+        file: engines-overview.md
+        name: "Catálogo de Motores (BREO)"
+      - id: BT-001
+        file: behavioral-twin.md
+        name: "Behavioral Twin"
+      - id: DM-001
+        file: data-model.md
+        name: "Modelo de Datos"
+
+  - id: 200-Backend
+    type: "module"
+    name: "Backend y Servicios"
+    depends_on: [100-Architecture]
+    children:
+      - id: API-001
+        file: api-graph.md
+        name: "API Graph"
+      - id: DB-001
+        file: database-graph.md
+        name: "Database Graph"
+      - id: EVT-001
+        file: events-and-workflows.md
+        name: "Eventos y Workflows"
+      - id: BTCE-001
+        file: transaction-engine.md
+        name: "Behavioral Transaction & Consistency Engine"
+
+  - id: 300-Frontend
+    type: "module"
+    name: "Frontend y Experiencia de Usuario"
+    depends_on: [100-Architecture, 400-AI, 500-Experiencies]
+    children:
+      - id: BDS-001
+        file: design-system.md
+        name: "Behavioral Design System"
+      - id: UI-001
+        file: ui-graph.md
+        name: "UI Graph"
+      - id: ACC-001
+        file: accessibility.md
+        name: "Accesibilidad"
+      - id: PAT-001
+        file: patient-app.md
+        name: "Experiencia Nintendo – App del Paciente"
+      - id: THP-001
+        file: therapist-app.md
+        name: "Experiencia Apple – App del Terapeuta"
+      - id: AHEE-001
+        file: ahee-implementation.md
+        name: "Integración del Motor Adaptativo"
+      - id: BBS-001
+        file: brand-studio.md
+        name: "Behavioral Brand Studio"
+
+  - id: 400-AI
+    type: "module"
+    name: "Inteligencia Artificial y Motores Cognitivos"
+    depends_on: [100-Architecture, 200-Backend]
+    children:
+      - id: AI-001
+        file: ai-core.md
+        name: "Motor de Inferencia Local (Gemma + MediaPipe)"
+      - id: AI-002
+        file: companion.md
+        name: "Compañero Terapéutico (TCCN)"
+      - id: AI-003
+        file: adaptive-orchestrator.md
+        name: "Orquestador de Evaluación Adaptativa (AAO)"
+      - id: AI-004
+        file: guardrails.md
+        name: "Guardrails Clínicos y de Seguridad"
+      - id: AI-005
+        file: rag-knowledge-graph.md
+        name: "Conocimiento Científico (BKGE + BSC)"
+      - id: AI-006
+        file: event-sourcing-ai.md
+        name: "Event Sourcing para Procesamiento de IA"
+      - id: AI-007
+        file: ai-007-support.md
+        name: "Soporte y Atención por IA (Support Chat)"
+
+  - id: 500-Experiencies
+    type: "module"
+    name: "Experiencias Terapéuticas y Gamificación"
+    depends_on: [100-Architecture, 400-AI, BPO, BPG]
+    children:
+      - id: BERL-001
+        file: experience-engine.md
+        name: "Behavioral Exercise Research Lab (BERL)"
+      - id: BML-001
+        file: mechanics-library.md
+        name: "Behavioral Mechanics Library (BML)"
+      - id: PE-001
+        file: process-engine.md
+        name: "Motor de Procesos Psicológicos"
+      - id: CP-001
+        file: clinical-processes.md
+        name: "Mapeo de Intervenciones Clínicas"
+      - id: IDE-001
+        file: ideographic-game-engine.md
+        name: "Motor de Juegos Ideográficos Dinámicos"
+
+  - id: 1300-Libraries  # NUEVO
+    type: "module"
+    name: "Arquitectura de Bibliotecas"
+    depends_on: [000-Core, 100-Architecture, 200-Backend, 500-Experiencies]
+    children:
+      - id: LIB-001
+        file: libraries.md
+        name: "Catálogo de Bibliotecas (72 librerías)"
+      - id: LIB-002
+        file: strict_spec_schema.md
+        name: "Esquema de Calidad Estricto"
+      - id: LIB-003
+        file: template_library.md
+        name: "Plantilla para Generación de Bibliotecas"
+      - id: LIB-004
+        file: bcl_complete_implementation.md
+        name: "Implementación Completa de BCL"
+
+  - id: 600-Commerce
+    type: "module"
+    name: "Motor Comercial y Facturación"
+    depends_on: [100-Architecture, 200-Backend, 900-Security]
+    children:
+      - id: BCE-001
+        file: business-model.md
+        name: "Behavioral Commerce Engine (BCE)"
+      - id: WBS-001
+        file: website-builder.md
+        name: "Behavioral Website Builder"
+      - id: SLS-001
+        file: service-landing.md
+        name: "Landing del Servicio (SLS)"
+
+  - id: 700-PracticeOS
+    type: "module"
+    name: "Sistema Operativo del Consultorio Clínico"
+    depends_on: [100-Architecture, 200-Backend, 300-Frontend, 500-Experiencies, 600-Commerce]
+    children:
+      - id: BPOS-001
+        file: practice-os.md
+        name: "Behavioral Practice OS (BPOS)"
+      - id: BAS-001
+        file: automation-studio.md
+        name: "Behavioral Automation Studio"
+      - id: BRE-001
+        file: relationship-engine.md
+        name: "Behavioral Relationship Engine"
+
+  - id: 800-Analytics
+    type: "module"
+    name: "Inteligencia Analítica y Científica"
+    depends_on: [100-Architecture, 400-AI, 500-Experiencies, 700-PracticeOS]
+    children:
+      - id: BIP-001
+        file: outcomes-analytics.md
+        name: "Behavioral Intelligence Platform (BIP)"
+      - id: BROS-001
+        file: research-platform.md
+        name: "Behavioral Research OS (BROS)"
+
+  - id: 900-Security
+    type: "module"
+    name: "Seguridad y Gobernanza"
+    depends_on: [100-Architecture, 200-Backend]
+    children:
+      - id: BSOS-001
+        file: security.md
+        name: "Behavioral Security OS (BSOS)"
+
+  - id: 1000-Integration
+    type: "module"
+    name: "Integración y Orquestación en Tiempo Real"
+    depends_on: [200-Backend, 400-AI, 500-Experiencies, 600-Commerce, 700-PracticeOS]
+    children:
+      - id: BRIL-001
+        file: bril-spec.md
+        name: "Behavioral Runtime Integration Layer (BRIL)"
+
+  - id: 1100-Testing
+    type: "module"
+    name: "Aseguramiento de Calidad y Testing"
+    depends_on: [1000-Integration]
+    children:
+      - id: BQAS-001
+        file: bqas-spec.md
+        name: "Behavioral Quality Assurance System (BQAS)"
+
+  - id: 1200-Deployment
+    type: "module"
+    name: "Despliegue, Infraestructura y Operaciones"
+    depends_on: [1100-Testing]
+    children:
+      - id: DEVOPS-001
+        file: devops-spec.md
+        name: "DevOps: Despliegue, Monitoreo y Operaciones"
+
+  - id: BPE
+    type: "module"
+    name: "Behavioral Process Engine"
+    depends_on: [000-Core]
+    children:
+      - id: BPE-001
+        file: behavioral-process-engine.md
+        name: "Motor Central de Procesos Psicológicos"
+
+  - id: BPO
+    type: "module"
+    name: "Behavioral Process Ontology"
+    depends_on: [BPE, 000-Core]
+    children:
+      - id: BPO-001
+        file: bpo-ontology.md
+        name: "Ontología Formal de Procesos Psicológicos"
+
+  - id: BPG
+    type: "module"
+    name: "Behavioral Process Graph"
+    depends_on: [BPO, 100-Architecture]
+    children:
+      - id: BPG-001
+        file: bpg-spec.md
+        name: "Grafo Dirigido Dinámico de Procesos"
+
+  - id: BXE
+    type: "module"
+    name: "Behavioral Explainability Engine"
+    depends_on: [BPG, 400-AI]
+    children:
+      - id: BXE-001
+        file: bxe-spec.md
+        name: "Motor de Explicabilidad y Transparencia"
+
+  - id: BIK
+    type: "module"
+    name: "Behavioral Intelligence Kernel"
+    depends_on: [BPE, BPO, BPG, BXE, 100-Architecture, 200-Backend, 400-AI, 500-Experiencies]
+    children:
+      - id: BIK-001
+        file: bik-architecture.md
+        name: "Arquitectura Unificada del Sistema Operativo Conductual"
+
+  - id: BCMS
+    type: "module"
+    name: "Behavioral Clinical Management System"
+    depends_on: [100-Architecture, 200-Backend]
+    children:
+      - id: BCMS-001
+        file: bcms-detailed.md
+        name: "Sistema Integral de Gestión Clínica"
+      - id: BCIE-001
+        file: bcie-spec.md
+        name: "Motor de Inteligencia de Carga Clínica"
+      - id: BCOE-001
+        file: bcoe-spec.md
+        name: "Motor de Operaciones del Consultorio"
+
+  - id: BSI
+    type: "module"
+    name: "Behavioral Scheduling Intelligence"
+    depends_on: [BCMS]
+    children:
+      - id: BSI-001
+        file: bsi-spec.md
+        name: "Motor Inteligente de Programación de Sesiones"
+
+# ------------------------------------------------------------
+# RELACIONES DE DEPENDENCIA ENTRE ARCHIVOS (Aristas)
+# ------------------------------------------------------------
+edges:
+  # Dependencias del módulo 1300-Libraries (NUEVO)
+  - source: LIB-001  # libraries.md
+    target: ONT-001  # ontology.md
+    type: "depends_on"
+  - source: LIB-001
+    target: BEA-001  # system-architecture.md
+    type: "depends_on"
+
+  - source: LIB-002  # strict_spec_schema.md
+    target: BQAS-001  # bqas-spec.md
+    type: "depends_on"
+
+  - source: LIB-003  # template_library.md
+    target: LIB-002  # strict_spec_schema.md
+    type: "depends_on"
+  - source: LIB-003
+    target: LIB-004  # bcl_complete_implementation.md
+    type: "depends_on"
+
+  - source: LIB-004  # bcl_complete_implementation.md
+    target: LIB-002  # strict_spec_schema.md
+    type: "depends_on"
+
+  # Dependencias de los documentos del módulo index
+  - source: IDX-004  # environment-variables.md
+    target: BSOS-001  # security.md
+    type: "depends_on"
+  - source: IDX-004
+    target: DEVOPS-001  # devops-spec.md
+    type: "depends_on"
+
+  - source: IDX-005  # README.md
+    target: IDX-001  # master.yaml
+    type: "depends_on"
+  - source: IDX-005
+    target: IDX-003  # behavioral-graph.yaml
+    type: "depends_on"
+
+  - source: IDX-006  # EVOLUTION.md
+    target: IDX-001  # master.yaml
+    type: "depends_on"
+  - source: IDX-006
+    target: IDX-003  # behavioral-graph.yaml
+    type: "depends_on"
+
+  # Dependencias existentes (mantenidas)
+  - source: WBS-001  # website-builder
+    target: BCE-001
+    type: "depends_on"
+  - source: WBS-001
+    target: BPOS-001
+    type: "depends_on"
+  - source: WBS-001
+    target: BDS-001
+    type: "depends_on"
+
+  - source: BBS-001  # brand-studio
+    target: BDS-001
+    type: "depends_on"
+  - source: BBS-001
+    target: WBS-001
+    type: "depends_on"
+  - source: BBS-001
+    target: BPOS-001
+    type: "depends_on"
+  - source: BBS-001
+    target: PAT-001
+    type: "depends_on"
+
+  - source: BAS-001  # automation-studio
+    target: EVT-001
+    type: "depends_on"
+  - source: BAS-001
+    target: BPOS-001
+    type: "depends_on"
+  - source: BAS-001
+    target: BCE-001
+    type: "depends_on"
+  - source: BAS-001
+    target: BIP-001
+    type: "depends_on"
+  - source: BAS-001
+    target: AI-002
+    type: "depends_on"
+
+  - source: BRE-001  # relationship-engine
+    target: BPOS-001
+    type: "depends_on"
+  - source: BRE-001
+    target: BT-001
+    type: "depends_on"
+  - source: BRE-001
+    target: AI-002
+    type: "depends_on"
+  - source: BRE-001
+    target: BAS-001
+    type: "depends_on"
+
+  - source: BTCE-001  # transaction-engine
+    target: EVT-001
+    type: "depends_on"
+  - source: BTCE-001
+    target: DB-001
+    type: "depends_on"
+  - source: BTCE-001
+    target: API-001
+    type: "depends_on"
+
+  # ============================================================
+  # Dependencias de los nuevos módulos (Behavioral Process Engine)
+  # ============================================================
+
+  # BPE → 000-Core (ontología fundamental)
+  - source: BPE-001
+    target: ONT-001
+    type: "depends_on"
+
+  # BPO → BPE y 000-Core
+  - source: BPO-001
+    target: BPE-001
+    type: "depends_on"
+  - source: BPO-001
+    target: ONT-001
+    type: "depends_on"
+
+  # BPG → BPO y 100-Architecture
+  - source: BPG-001
+    target: BPO-001
+    type: "depends_on"
+  - source: BPG-001
+    target: BEA-001  # system-architecture
+    type: "depends_on"
+  - source: BPG-001
+    target: DM-001   # data-model
+    type: "depends_on"
+
+  # BXE → BPG y 400-AI
+  - source: BXE-001
+    target: BPG-001
+    type: "depends_on"
+  - source: BXE-001
+    target: AI-001   # ai-core
+    type: "depends_on"
+  - source: BXE-001
+    target: AI-004   # guardrails
+    type: "depends_on"
+
+  # BIK → todos los motores (documento unificador)
+  - source: BIK-001
+    target: BPE-001
+    type: "depends_on"
+  - source: BIK-001
+    target: BPO-001
+    type: "depends_on"
+  - source: BIK-001
+    target: BPG-001
+    type: "depends_on"
+  - source: BIK-001
+    target: BXE-001
+    type: "depends_on"
+  - source: BIK-001
+    target: BEA-001
+    type: "depends_on"
+  - source: BIK-001
+    target: API-001
+    type: "depends_on"
+  - source: BIK-001
+    target: AI-001
+    type: "depends_on"
+  - source: BIK-001
+    target: BERL-001  # experience-engine
+    type: "depends_on"
+
+  # BCMS → 100-Architecture y 200-Backend
+  - source: BCMS-001
+    target: BEA-001
+    type: "depends_on"
+  - source: BCMS-001
+    target: DB-001
+    type: "depends_on"
+  - source: BCMS-001
+    target: API-001
+    type: "depends_on"
+
+  # BCIE → BCMS (hijo del BCMS)
+  - source: BCIE-001
+    target: BCMS-001
+    type: "depends_on"
+  - source: BCIE-001
+    target: AI-001
+    type: "depends_on"
+  - source: BCIE-001
+    target: BPG-001
+    type: "depends_on"
+
+  # BCOE → BCMS (hijo del BCMS)
+  - source: BCOE-001
+    target: BCMS-001
+    type: "depends_on"
+  - source: BCOE-001
+    target: BCE-001   # business-model
+    type: "depends_on"
+
+  # BSI → BCIE (submotor del BCIE)
+  - source: BSI-001
+    target: BCIE-001
+    type: "depends_on"
+  - source: BSI-001
+    target: BCMS-001
+    type: "depends_on"
+  - source: BSI-001
+    target: BPG-001
+    type: "depends_on"
+
+  # ============================================================
+  # Dependencias del Ideographic Game Engine (NUEVO - Nivel 3)
+  # ============================================================
+
+  # IDE-001 → BPO (consulta procesos del paciente para generar juegos)
+  - source: IDE-001
+    target: BPO-001
+    type: "depends_on"
+
+  # IDE-001 → BPG (lee el grafo de procesos del paciente)
+  - source: IDE-001
+    target: BPG-001
+    type: "depends_on"
+
+  # IDE-001 → BERL (se integra con el motor de ejercicios)
+  - source: IDE-001
+    target: BERL-001
+    type: "depends_on"
+
+  # ============================================================
+  # Change `landing-ia-atencion` — AI-007 Support Chat (NUEVO)
+  # ============================================================
+
+  # AI-007 → AI-001 (corre sobre el runtime on-device Gemma + MediaPipe)
+  - source: AI-007
+    target: AI-001
+    type: "depends_on"
+
+  # AI-007 → AI-004 (cumple todos los guardrails clínicos y de seguridad)
+  - source: AI-007
+    target: AI-004
+    type: "depends_on"
+
+  # AI-007 → AI-006 (emite eventos al Event Stream)
+  - source: AI-007
+    target: AI-006
+    type: "depends_on"
+
+  # AI-007 → API-001 (endpoints de chat y escalación)
+  - source: AI-007
+    target: API-001
+    type: "depends_on"
+
+  # AI-007 → DB-001 (tablas support_tickets y consent_log)
+  - source: AI-007
+    target: DB-001
+    type: "depends_on"
+
+  # AI-007 → SLS-001 (el widget de soporte vive en la landing)
+  - source: AI-007
+    target: SLS-001
+    type: "depends_on"
+
+  # SLS-001 → AI-007 (la landing aloja el widget del support chat)
+  - source: SLS-001
+    target: AI-007
+    type: "depends_on"
+
+  # ============================================================
+  # Build Roadmap (NUEVO) — BRD-001/IDX-007
+  # ============================================================
+
+  # IDX-007 → IDX-001 (el roadmap depende del grafo maestro master.yaml)
+  - source: IDX-007
+    target: IDX-001
+    type: "depends_on"

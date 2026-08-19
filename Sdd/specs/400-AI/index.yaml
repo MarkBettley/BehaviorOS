@@ -1,0 +1,323 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 400-AI
+# Version: 2.2.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define todos los motores de inteligencia artificial
+# del BehavioralOS. Alberga los sistemas de IA que permiten la
+# personalización, la conversación terapéutica, la evaluación
+# adaptativa, el razonamiento clínico, la recuperación de
+# conocimiento y el procesamiento de eventos. Es el cerebro
+# cognitivo del ecosistema.
+#
+# CONTENIDO:
+#   1. ai-core.md               → Gemma + MediaPipe on-device + Streaming SSE
+#   2. companion.md             → TCCN (compañero terapéutico)
+#   3. adaptive-orchestrator.md → AAO (evaluación adaptativa continua)
+#   4. guardrails.md            → Guardrails + Crisis Interceptor
+#   5. rag-knowledge-graph.md   → BSC + BKGE (conocimiento científico)
+#   6. event-sourcing-ai.md     → Event Stream + 7 motores derivados (NUEVO)
+#   7. ai-007-support.md        → Soporte y atención por IA (support chat, NUEVO)
+#
+# IMPORTANCIA:
+# La IA es el diferenciador clave del BehavioralOS. Gemma con
+# MediaPipe ofrece inferencia on-device con constrained decoding JSON,
+# el Crisis Interceptor protege la vida del paciente, y el
+# event-sourcing habilita 7 motores derivados que procesan
+# eventos conductuales de forma asíncrona y tolerante a fallos.
+# ============================================================
+
+module:
+  id: 400-AI
+  name: "Inteligencia Artificial y Motores Cognitivos"
+  version: 2.2.0
+  status: Stable
+  implementation_level: 3
+  implementation_status: "Frozen — esperar a Nivel 2. Nota: AI-007 queda ESPECIFICADO para planning (status: Specified); la implementación del módulo sigue congelada hasta Nivel 2."
+  owner: "IA & Ciencia de Datos"
+  last_updated: 2026-08-12
+  description: >
+    Define todos los motores de inteligencia artificial del BehavioralOS:
+    inferencia on-device (Gemma + MediaPipe con constrained decoding),
+    companion terapéutico (TCCN), evaluación adaptativa (AAO),
+    guardrails clínicos con Crisis Interceptor, conocimiento
+    científico (BSC + BKGE), arquitectura de eventos con 7
+    motores derivados (RFT, ACT, FAP, BPG, Twin, BXE, BARS),
+    y soporte y atención por IA (AI-007) para reporte de errores
+    y propuestas de mejora.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología, los principios y el vocabulario guían el comportamiento de la IA."
+  - id: 100-Architecture
+    reason: "La arquitectura define cómo la IA se integra con el resto del sistema."
+  - id: 200-Backend
+    reason: "Las APIs, eventos y Redis Streams permiten que la IA se comunique."
+  - id: 300-Frontend
+    reason: "La IA interactúa con el usuario a través de la PWA (SSE streaming)."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: AI-001
+    file: ai-core.md
+    title: "Motor de Inferencia IA On-Device (Gemma + MediaPipe)"
+    description: >
+      Define el núcleo de la IA: Gemma como modelo principal
+      ejecutado on-device via MediaPipe, con constrained
+      decoding JSON, function calling para eventos clínicos,
+      prompt versioning, shadow deployments y pipeline de
+      streaming SSE completo. Basado en AI Engineering (Chip Huyen).
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Arquitectura de inferencia on-device: Gemma + MediaPipe"
+      - "Constrained Decoding JSON"
+      - "Function Calling clínico"
+      - "Prompt versioning y shadow deployments"
+      - "Pipeline de streaming SSE"
+
+  - id: AI-002
+    file: companion.md
+    title: "Compañero Terapéutico (TCCN)"
+    description: >
+      Define el Therapeutic Cognitive Companion Network (TCCN),
+      la IA conversacional que acompaña al paciente con personalidad
+      estable, tono clínico y adaptación al perfil del usuario.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Personalidad y tono del compañero"
+      - "Estructura de diálogo y tipos de mensajes"
+      - "Integración con Behavioral Twin y AAO"
+
+  - id: AI-003
+    file: adaptive-orchestrator.md
+    title: "Orquestador de Evaluación Adaptativa (AAO)"
+    description: >
+      Define el AAO, el sistema de evaluación continua, multimodal
+      e idiográfica con Confidence Engine y selección adaptativa
+      de evidencia.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Fuentes de evidencia y multimodalidad"
+      - "Confidence Engine"
+      - "Selección adaptativa de evidencia"
+
+  - id: AI-004
+    file: guardrails.md
+    title: "Guardrails Clínicos, Seguridad y Crisis Interceptor"
+    description: >
+      Define el sistema de guardrails con Crisis Interceptor
+      (filtro regex + clasificación semántica para ideación suicida),
+      protocolo de contención, bloqueo de gamificación en crisis,
+      notificación al psicólogo, cumplimiento FDA/EU MDR/AI Act
+      y human-in-the-loop obligatorio.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Crisis Interceptor (regex + semántica)"
+      - "Protocolo de contención"
+      - "Cumplimiento FDA y EU MDR/AI Act"
+      - "Human-in-the-loop obligatorio"
+      - "Pipeline de guardrails completo"
+
+  - id: AI-005
+    file: rag-knowledge-graph.md
+    title: "Conocimiento Científico (BSC + BKGE)"
+    description: >
+      Define el BKGE (grafo de conocimiento semántico) y el BSC
+      (capa de conocimiento científico agregado) para RAG e investigación.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Estructura del BKGE"
+      - "Integración con RAG"
+      - "Behavioral Science Cloud"
+
+  - id: AI-006
+    file: event-sourcing-ai.md
+    title: "Event Sourcing para Procesamiento de IA"
+    description: >
+      Define la arquitectura de eventos para procesamiento de IA:
+      Event Stream como System of Record, 7 motores derivados
+      (RFT Engine, ACT Hexaflex, FAP CRB, BPG Updater, Twin Updater,
+      BXE Processor, BARS Aggregator), Redis Streams, FastAPI
+      BackgroundTasks, Database Views como contrato público y
+      patrón Strangler Fig para migración incremental.
+    priority: P0
+    estimated_read_time: 25 min
+    exports:
+      - "Event Stream como System of Record"
+      - "7 motores derivados"
+      - "Redis Streams como bus de eventos"
+      - "Database Views como contrato público"
+      - "Patrón Strangler Fig"
+
+  - id: AI-007
+    file: ai-007-support.md
+    title: "Soporte y Atención por IA (Support Chat)"
+    description: >
+      Define el canal de soporte por IA para reporte de errores y
+      propuestas de mejora, presente en la landing (SLS-001) y las
+      apps. Corre sobre el runtime on-device de AI-001 (Gemma +
+      MediaPipe, streaming SSE desde el dispositivo), clasifica
+      intents (error/improvement), persiste tickets en
+      support_tickets, registra consentimiento
+      en consent_log y cumple guardrails (AI-004) y event sourcing
+      (AI-006). Sin inferencia en navegador (no WebGPU/ONNX) ni en servidor privado.
+    priority: P1
+    estimated_read_time: 20 min
+    exports:
+      - "Canal de soporte por IA (errores y mejoras)"
+      - "Clasificación de intents (soporte vs. TCCN)"
+      - "Flujo de tickets y escalamiento"
+      - "Registro de consentimiento de diagnóstico"
+      - "Integración con guardrails y event sourcing"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Inferencia IA On-Device (Gemma + MediaPipe)"
+      description: "Motor de lenguaje on-device con constrained decoding"
+      used_by: [TCCN, AAO, AHEE, BERL, Event Sourcing]
+  - concept:
+      name: "Compañero Terapéutico (TCCN)"
+      description: "IA conversacional con personalidad clínica"
+      used_by: [Patient App, Therapist App, AHEE]
+  - concept:
+      name: "Evaluación Adaptativa (AAO)"
+      description: "Evaluación continua y multimodal del paciente"
+      used_by: [Behavioral Twin, BERL, TCCN, MPO, AHEE]
+  - concept:
+      name: "Guardrails + Crisis Interceptor"
+      description: "Filtros de seguridad, crisis y cumplimiento normativo"
+      used_by: [TCCN, AAO, RAG, BCGS, Patient App]
+  - concept:
+      name: "Conocimiento Científico (BKGE + BSC)"
+      description: "Grafo de conocimiento y base de evidencia científica"
+      used_by: [RAG, AAO, BERL, TCCN, BIP, BROS]
+  - concept:
+      name: "Event Sourcing (7 Motores Derivados)"
+      description: "Arquitectura de eventos para procesamiento asíncrono"
+      used_by: [Backend, Panel Terapeuta, Analytics]
+  - concept:
+      name: "Soporte y Atención por IA (AI-007)"
+      description: "Canal de soporte para reporte de errores y mejoras"
+      used_by: [Landing (SLS-001), Patient App, Therapist App, Soporte]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Toda respuesta de la IA debe pasar por el pipeline de guardrails."
+    check: "Las pruebas de integración verifican que cada salida de IA sea validada."
+  - rule: "El Crisis Interceptor debe detectar ideación suicida con >99% recall."
+    check: "Evaluación clínica con conjunto de pruebas de crisis."
+  - rule: "El AAO debe actualizar el Behavioral Twin después de cada evaluación."
+    check: "Las pruebas de integración verifican la actualización del Twin."
+  - rule: "El TCCN debe alinearse con la ontología y el vocabulario controlado."
+    check: "Las pruebas de unidad verifican el lenguaje contra el vocabulario."
+  - rule: "El BKGE debe mantener trazabilidad científica."
+    check: "El validador verifica versiones de conocimiento."
+  - rule: "El Event Stream debe procesar >99% de eventos exitosamente."
+    check: "Monitoreo de procesamiento de motores derivados."
+  - rule: "El streaming SSE debe mantener latencia <200ms."
+    check: "Métricas de backend para latencia de primera respuesta."
+  - rule: "El Support Chat (AI-007) no debe atender contenido comercial ni terapéutico."
+    check: "Las pruebas de integración verifican que los intents commercial/therapeutic se redirigen y no se resuelven."
+  - rule: "Todo ticket de soporte con datos personales debe tener consentimiento en consent_log."
+    check: "Pruebas de integración verifican consent_log antes de persistir datos de diagnóstico."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "IA y Ciencia de Datos"
+  required_for:
+    - "Implementación de motores de IA"
+    - "Diseño de prompts y guardrails"
+    - "Configuración de evaluación adaptativa"
+    - "Integración de conocimiento científico"
+    - "Arquitectura de eventos y motores derivados"
+    - "Crisis Interceptor y cumplimiento normativo"
+    - "Soporte y atención por IA (AI-007)"
+  tokens_estimate: 5800
+  embedding_tags:
+    - "ia"
+    - "inteligencia-artificial"
+    - "gemma"
+    - "mediapipe"
+    - "on-device"
+    - "tccn"
+    - "companion"
+    - "aao"
+    - "evaluacion-adaptativa"
+    - "guardrails"
+    - "crisis-interceptor"
+    - "crisis"
+    - "suicidio"
+    - "rag"
+    - "bkge"
+    - "bsc"
+    - "conocimiento"
+    - "ontologia"
+    - "event-sourcing"
+    - "redis-streams"
+    - "strangler-fig"
+    - "fda"
+    - "eu-mdr"
+    - "ai-act"
+    - "human-in-the-loop"
+    - "soporte"
+    - "support-chat"
+    - "tickets"
+    - "consent-log"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura de IA & Ciencia de Datos"
+    changes:
+      - "Creación inicial del módulo de IA."
+      - "Definición de los cinco documentos principales: AI Core, TCCN, AAO, Guardrails y BKGE/BSC."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."
+  - version: 2.0.0
+    date: 2026-07-14
+    author: "Arquitectura de IA & Ciencia de Datos"
+    changes:
+      - "Añadido event-sourcing-ai.md: Arquitectura de eventos con 7 motores derivados."
+      - "Actualizado ai-core.md a v2.0.0: Gemma 4 + vLLM, constrained decoding, function calling, prompt versioning, shadow deployments, pipeline SSE."
+      - "Actualizado guardrails.md a v2.0.0: Crisis Interceptor, protocolo de contención, cumplimiento FDA/EU MDR/AI Act."
+      - "Nuevas dependencias: event-sourcing-ai.md."
+      - "Nuevas exportaciones: Event Sourcing (7 Motores Derivados)."
+      - "Nuevas validaciones: Crisis Interceptor recall, procesamiento eventos, latencia SSE."
+      - "Actualizada estimación de tokens a 5800."
+  - version: 2.1.0
+    date: 2026-08-12
+    author: "Arquitectura de IA & Frontend Engineering"
+    changes:
+      - "Añadido ai-007-support.md: Soporte y Atención por IA (support chat) para reporte de errores y mejoras, con runtime sobre AI-001 (Gemma 4 + vLLM), intents, tickets (support_tickets), consentimiento (consent_log), escalamiento y guardrails."
+      - "AI-007 queda ESPECIFICADO para planning (status: Specified); la implementación del módulo sigue congelada hasta Nivel 2 (se aclara en implementation_status)."
+      - "Nuevas exportaciones: Soporte y Atención por IA (AI-007)."
+      - "Nuevos embedding_tags: soporte, support-chat, tickets, consent-log."
+  - version: 2.2.0
+    date: 2026-08-12
+    author: "Arquitectura de IA & Frontend Engineering"
+    changes:
+      - "AMENDMENT de runtime (Norma Vinculante): todas las AIs del módulo se estandarizan a on-device (Gemma + MediaPipe), SUPERSEDING las referencias previas a vLLM/Ollama, servidor privado e inferencia en navegador (WebGPU/ONNX)."
+      - "Actualizado ai-core.md (AI-001) a v2.1.0 y ai-007-support.md (AI-007) a v1.1.0: runtime on-device."
+      - "Actualizadas descripciones y exportaciones del módulo (título de AI-001, descripciones de inferencia y exportación principal)."
+      - "La implementación del módulo permanece congelada hasta Nivel 2 (se mantiene implementation_status)."

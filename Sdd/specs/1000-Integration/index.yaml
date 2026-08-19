@@ -1,0 +1,173 @@
+# ============================================================
+# BehavioralOS - Specification Driven Development
+# Module: 1000-Integration
+# Version: 1.0.0
+# Status: Stable
+# ============================================================
+# PROPÓSITO:
+# Este módulo define el Behavioral Runtime Integration Layer
+# (BRIL), el sistema de integración y orquestación en tiempo real
+# del BehavioralOS. BRIL coordina la comunicación entre todos los
+# motores, servicios y frontends mediante eventos, adaptadores
+# y colas de trabajo, garantizando que el ecosistema funcione
+# como un todo cohesivo y desacoplado.
+#
+# CONTENIDO:
+#   1. bril-spec.md   → BRIL: Event Bus, adaptadores, colas,
+#                        sincronización, monitorización
+#
+# IMPORTANCIA:
+# BRIL es el sistema nervioso del BehavioralOS. Sin una capa de
+# integración robusta, los motores (AAO, BERL, TCCN, etc.) se
+# convertirían en silos aislados. BRIL asegura que cada evento
+# llegue a su destino, que los datos fluyan sin pérdidas, y que
+# el sistema pueda crecer añadiendo nuevos motores sin romper
+# la arquitectura existente.
+# ============================================================
+
+module:
+  id: 1000-Integration
+  name: "Integración y Orquestación en Tiempo Real"
+  version: 1.0.0
+  status: Stable
+  implementation_level: 4
+  implementation_status: "Frozen — esperar a Nivel 3"
+  owner: "Arquitectura de Integración & DevOps"
+  last_updated: 2026-07-01
+  description: >
+    Define el Behavioral Runtime Integration Layer (BRIL),
+    que coordina la comunicación entre todos los motores,
+    servicios y frontends mediante eventos, adaptadores
+    y colas de trabajo.
+
+# ------------------------------------------------------------
+# DEPENDENCIAS
+# ------------------------------------------------------------
+depends_on:
+  - id: 000-Core
+    reason: "La ontología y los principios guían la estructura de eventos."
+  - id: 100-Architecture
+    reason: "La arquitectura define la integración del BRIL con el resto del sistema."
+  - id: 200-Backend
+    reason: "Las APIs, bases de datos y eventos soportan la integración."
+  - id: 300-Frontend
+    reason: "El frontend se comunica con el backend a través de BRIL (WebSockets, APIs)."
+  - id: 400-AI
+    reason: "Los motores de IA (TCCN, AAO) se comunican a través de BRIL."
+  - id: 500-Experiencies
+    reason: "El BERL envía telemetría a través de BRIL."
+  - id: 600-Commerce
+    reason: "El BCE recibe webhooks y envía eventos a través de BRIL."
+  - id: 700-PracticeOS
+    reason: "El BPOS se comunica con otros motores a través de BRIL."
+  - id: 800-Analytics
+    reason: "El BIP consume eventos de BRIL para analítica."
+  - id: 900-Security
+    reason: "El BSOS autentica y autoriza las comunicaciones a través de BRIL."
+
+# ------------------------------------------------------------
+# ARCHIVOS HIJOS (Especificaciones concretas)
+# ------------------------------------------------------------
+children:
+  - id: BRIL-001
+    file: bril-spec.md
+    title: "Behavioral Runtime Integration Layer (BRIL)"
+    description: >
+      Define el sistema de integración y orquestación en tiempo real:
+      Event Bus (Redis Streams / NATS), adaptadores para cada motor
+      y servicio externo, colas de trabajo (BullMQ / Temporal),
+      sincronización entre frontend y backend (WebSockets, SSE),
+      monitoreo de salud de motores, políticas de reintentos y
+      dead letter queues, y trazabilidad de eventos. Es el sistema
+      nervioso del BehavioralOS.
+    priority: P0
+    estimated_read_time: 30 min
+    exports:
+      - "Event Bus"
+      - "Adaptadores de integración"
+      - "Colas de trabajo"
+      - "Sincronización en tiempo real"
+      - "Monitorización de salud"
+      - "Políticas de reintentos y DLQ"
+      - "Trazabilidad de eventos"
+
+# ------------------------------------------------------------
+# EXPORTACIONES (Qué ofrece este módulo al resto)
+# ------------------------------------------------------------
+exports:
+  - concept:
+      name: "Event Bus"
+      description: "Sistema de mensajería asíncrona (Redis Streams / NATS)"
+      used_by: [Todos los motores, Servicios, Frontend]
+  - concept:
+      name: "Adaptadores de Integración"
+      description: "Puentes para conectar servicios externos (Stripe, Google, etc.)"
+      used_by: [BCE, BPOS, BRIL]
+  - concept:
+      name: "Colas de Trabajo"
+      description: "Procesamiento asíncrono de tareas (BullMQ / Temporal)"
+      used_by: [Workflows, Notificaciones, Procesamiento por lotes]
+  - concept:
+      name: "Sincronización en Tiempo Real"
+      description: "WebSockets y SSE para comunicación instantánea con frontend"
+      used_by: [Patient App, Therapist App, HUD Clínico]
+  - concept:
+      name: "Monitorización de Salud"
+      description: "Health checks y monitoreo de motores"
+      used_by: [Admin Dashboard, DevOps, BQAS]
+  - concept:
+      name: "Políticas de Reintentos y DLQ"
+      description: "Manejo de fallos en la entrega de eventos"
+      used_by: [BRIL, BCE, Notificaciones]
+  - concept:
+      name: "Trazabilidad de Eventos"
+      description: "Correlación y trazabilidad de eventos a través del sistema"
+      used_by: [Auditoría, Debugging, BIP]
+
+# ------------------------------------------------------------
+# VALIDACIONES AUTOMÁTICAS (Para el CI/CD y el BQAS)
+# ------------------------------------------------------------
+validation_rules:
+  - rule: "Todos los eventos deben tener un correlation_id y causation_id para trazabilidad."
+    check: "El validador verifica que los eventos tengan metadatos de trazabilidad."
+  - rule: "Los adaptadores deben ser capaces de manejar fallos con reintentos y circuit breakers."
+    check: "Las pruebas de integración simulan fallos y verifican la resiliencia."
+  - rule: "El Event Bus debe garantizar la entrega de eventos (at-least-once)."
+    check: "Las pruebas de integración verifican la persistencia de eventos."
+  - rule: "Las colas de trabajo deben procesar tareas dentro de los timeouts definidos."
+    check: "Las pruebas de rendimiento verifican el tiempo de procesamiento de colas."
+
+# ------------------------------------------------------------
+# METADATOS PARA EL CLI Y AGENTES DE IA
+# ------------------------------------------------------------
+ai_context:
+  reading_profile: "Integración y Orquestación"
+  required_for:
+    - "Implementación del Event Bus"
+    - "Configuración de adaptadores de integración"
+    - "Diseño de colas de trabajo"
+    - "Configuración de WebSockets y sincronización"
+  tokens_estimate: 3000
+  embedding_tags:
+    - "integracion"
+    - "orquestacion"
+    - "event-bus"
+    - "adaptadores"
+    - "colas"
+    - "workflows"
+    - "websockets"
+    - "sincronizacion"
+    - "monitoreo"
+    - "bril"
+
+# ------------------------------------------------------------
+# HISTORIAL DE CAMBIOS (Versionado semántico)
+# ------------------------------------------------------------
+history:
+  - version: 1.0.0
+    date: 2026-07-01
+    author: "Arquitectura de Integración"
+    changes:
+      - "Creación inicial del módulo de Integración."
+      - "Definición del archivo bril-spec.md (BRIL)."
+      - "Establecimiento de dependencias, exportaciones y reglas de validación."
