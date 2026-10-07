@@ -34,6 +34,9 @@ else
   docker compose up -d --no-build
 fi
 
+echo "[setup] Provisioning backend application database role..."
+./scripts/provision-backend-role.sh
+
 echo "[setup] Estado de los contenedores:"
 docker compose ps
 

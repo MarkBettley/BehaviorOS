@@ -174,6 +174,7 @@ services:
       IMGPROXY_LOCAL_FILESYSTEM_ROOT: /
       IMGPROXY_USE_ETAG: "true"
       IMGPROXY_ENABLE_WEBP_DETECTION: ${IMGPROXY_ENABLE_WEBP_DETECTION:-true}
+      IMGPROXY_ALLOWED_SOURCES: "local://"
     volumes:
       - ./volumes/storage:/var/lib/storage:z
     networks:
@@ -259,6 +260,37 @@ services:
       SUPABASE_ANON_KEY: ${ANON_KEY}
       SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
       AUTH_JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - behavioralos-network
+
+  backend:
+    container_name: behavioralos-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${APP_PORT:-8001}:8001"
+    env_file:
+      - .env
+    environment:
+      BACKEND_DB_PASSWORD: ${BACKEND_DB_PASSWORD:-}
+      DATABASE_URL: postgresql+asyncpg://backend_app:${BACKEND_DB_PASSWORD:-}@db:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-postgres}
+      MIGRATION_DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@db:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      SUPABASE_JWT_AUDIENCE: authenticated
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8001/api/v1/health')"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
     networks:
       - behavioralos-network
 
